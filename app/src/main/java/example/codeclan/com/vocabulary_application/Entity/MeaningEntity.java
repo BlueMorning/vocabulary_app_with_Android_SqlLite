@@ -4,6 +4,7 @@ package example.codeclan.com.vocabulary_application.Entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "meanings", foreignKeys = @ForeignKey(   entity        = WordEntity.class,
@@ -16,7 +17,7 @@ public class MeaningEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="mig_id")
-    private final Long id;
+    private Long id;
 
     @ColumnInfo(name="mig_definition")
     private String definition;
@@ -31,15 +32,24 @@ public class MeaningEntity {
     private String antonyms;
 
     @ColumnInfo(name= "mig_wrd_id")
-    private int wordId;
+    private Long wordId;
 
-    public MeaningEntity(Long id, String definition, String example, String synonyms, String antonyms, int wordId) {
+    public MeaningEntity(Long id, Long wordId, String definition, String example, String synonyms, String antonyms) {
         this.id         = id;
         this.definition = definition;
         this.example    = example;
         this.synonyms   = synonyms;
         this.antonyms   = antonyms;
         this.wordId     = wordId;
+    }
+
+    @Ignore
+    public MeaningEntity(Long wordId, String definition, String example, String synonyms, String antonyms) {
+        this.wordId     = wordId;
+        this.definition = definition;
+        this.example    = example;
+        this.synonyms   = synonyms;
+        this.antonyms   = antonyms;
     }
 
 
@@ -81,11 +91,11 @@ public class MeaningEntity {
         this.antonyms = antonyms;
     }
 
-    public int getWordId() {
+    public Long getWordId() {
         return wordId;
     }
 
-    public void setWordId(int wordId) {
+    public void setWordId(Long wordId) {
         this.wordId = wordId;
     }
 }

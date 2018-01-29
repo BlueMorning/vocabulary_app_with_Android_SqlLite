@@ -20,7 +20,8 @@ public interface MeaningDao {
     MeaningEntity getMeaningByMeaningId(Long id);
 
     @Query("SELECT * FROM meanings WHERE mig_wrd_id = :id")
-    List<MeaningEntity> getMeaningsByWord(Long id);
+    List<MeaningEntity> getMeaningsByWordId(Long id);
+
 
     @Insert
     public Long insertMeaning(MeaningEntity meaningEntity);
