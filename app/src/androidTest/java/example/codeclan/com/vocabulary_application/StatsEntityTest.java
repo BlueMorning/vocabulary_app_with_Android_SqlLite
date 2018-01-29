@@ -77,6 +77,37 @@ public class StatsEntityTest {
     @Test
     public void canDeleteStats(){
 
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "rocks");
+        wordEntity.setId(wordDao.insertWord(wordEntity));
+        assertEquals(1, wordDao.getAll().size());
+
+        // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        statsEntity.setId(statsDao.insertStats(statsEntity));
+
+        assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
+
+        statsDao.deleteStats(statsEntity);
+
+        assertEquals(null, statsDao.getStatsByStatsId(statsEntity.getId()));
+    }
+
+    @Test
+    public void canDeleteStatsById(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "rocks");
+        wordEntity.setId(wordDao.insertWord(wordEntity));
+        assertEquals(1, wordDao.getAll().size());
+
+        // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        statsEntity.setId(statsDao.insertStats(statsEntity));
+
+        assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
+
+        statsDao.deleteStatsByStatsId(statsEntity.getId());
+
+        assertEquals(null, statsDao.getStatsByStatsId(statsEntity.getId()));
     }
 
 }

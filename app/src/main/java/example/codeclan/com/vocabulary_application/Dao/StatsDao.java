@@ -31,4 +31,7 @@ public interface StatsDao {
     @Delete
     public void deleteStats(StatsEntity stats);
 
+    @Query("DELETE FROM stats WHERE sta_id = :id")
+    public void deleteStatsByStatsId(Long id);
+
 }
