@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import example.codeclan.com.vocabulary_application.R;
 
-public class TrainingListActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_training_list);
+        setContentView(R.layout.activity_home_page);
     }
 }

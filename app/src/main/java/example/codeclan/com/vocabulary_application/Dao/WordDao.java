@@ -1,7 +1,9 @@
 package example.codeclan.com.vocabulary_application.Dao;
 
 
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -11,6 +13,7 @@ import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 
+@Dao
 public interface WordDao {
 
 
@@ -28,6 +31,9 @@ public interface WordDao {
 
     @Query("SELECT * FROM meanings WHERE mid_wrd_id = :id")
     List<MeaningEntity> getWordMeaningsByWordId(int id);
+
+    @Insert
+    public Long insertWord(WordEntity word);
 
     @Update
     public void updateWord(WordEntity word);

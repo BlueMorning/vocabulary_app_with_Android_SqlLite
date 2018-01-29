@@ -2,7 +2,10 @@ package example.codeclan.com.vocabulary_application.Entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 
 @Entity(tableName = "words")
@@ -13,10 +16,10 @@ public class WordEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "wrd_id")
-    public final int id;
+    public int id;
 
     @ColumnInfo(name = "wrd_type")
-    private String type;
+    private EnumWordType type;
 
     @ColumnInfo(name="wrd_spelling")
     private String spelling;
@@ -24,8 +27,15 @@ public class WordEntity {
     @ColumnInfo(name = "wrd_metadata")
     private String metadata;
 
-    public WordEntity(int id, String type, String spelling, String metadata) {
+    public WordEntity(int id, EnumWordType type, String spelling, String metadata) {
         this.id       = id;
+        this.type     = type;
+        this.spelling = spelling;
+        this.metadata = metadata;
+    }
+
+    @Ignore
+    public WordEntity(EnumWordType type, String spelling, String metadata) {
         this.type     = type;
         this.spelling = spelling;
         this.metadata = metadata;
@@ -39,11 +49,11 @@ public class WordEntity {
     }
 
 
-    public String getType() {
+    public EnumWordType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EnumWordType type) {
         this.type = type;
     }
 

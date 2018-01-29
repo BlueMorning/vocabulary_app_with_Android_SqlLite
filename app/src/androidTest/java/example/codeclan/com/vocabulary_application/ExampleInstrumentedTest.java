@@ -23,4 +23,7 @@ public class ExampleInstrumentedTest {
 
         assertEquals("example.codeclan.com.vocabulary_application", appContext.getPackageName());
     }
+
+
+
 }

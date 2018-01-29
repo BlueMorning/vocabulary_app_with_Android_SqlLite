@@ -6,7 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "meaning", foreignKeys = @ForeignKey(   entity        = WordEntity.class,
+@Entity(tableName = "meanings", foreignKeys = @ForeignKey(   entity        = WordEntity.class,
                                                             parentColumns = "wrd_id",
                                                             childColumns  = "mid_wrd_id"))
 public class MeaningEntity {

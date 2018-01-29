@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.time.LocalDate;
 
-@Entity(tableName = "training")
+@Entity(tableName = "trainings")
 public class TrainingEntity {
 
     // Properties

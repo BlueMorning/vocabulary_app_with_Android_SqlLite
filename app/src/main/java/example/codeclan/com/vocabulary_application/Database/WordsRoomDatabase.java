@@ -9,12 +9,18 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import example.codeclan.com.vocabulary_application.Converter.EnumWordTypeConverter;
 import example.codeclan.com.vocabulary_application.Converter.LocalDateTypeConverter;
+import example.codeclan.com.vocabulary_application.Dao.MeaningDao;
+import example.codeclan.com.vocabulary_application.Dao.StatsDao;
+import example.codeclan.com.vocabulary_application.Dao.TrainingDao;
+import example.codeclan.com.vocabulary_application.Dao.WordDao;
 import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordTrainingJoinEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 
 @Database(entities = {  WordEntity.class,
@@ -22,8 +28,8 @@ import example.codeclan.com.vocabulary_application.Entity.WordTrainingJoinEntity
                         StatsEntity.class,
                         TrainingEntity.class,
                         WordTrainingJoinEntity.class}, version = 1)
-@TypeConverters({LocalDateTypeConverter.class})
-public class WordsRoomDatabase extends RoomDatabase {
+@TypeConverters({LocalDateTypeConverter.class, EnumWordTypeConverter.class})
+public abstract class WordsRoomDatabase extends RoomDatabase {
 
     private static WordsRoomDatabase instance;
 
@@ -39,17 +45,12 @@ public class WordsRoomDatabase extends RoomDatabase {
         return instance;
     }
 
+    public abstract WordDao wordDao();
 
+    public abstract MeaningDao meaningDao();
 
+    public abstract TrainingDao trainingDao();
 
+    public abstract StatsDao statsDao();
 
-    @Override
-    protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
-        return null;
-    }
-
-    @Override
-    protected InvalidationTracker createInvalidationTracker() {
-        return null;
-    }
 }

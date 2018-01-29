@@ -1,7 +1,9 @@
 package example.codeclan.com.vocabulary_application.Dao;
 
 
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -10,6 +12,7 @@ import java.util.List;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 
+@Dao
 public interface TrainingDao {
 
 
@@ -20,11 +23,12 @@ public interface TrainingDao {
     List<TrainingEntity> getTrainingById(int id);
 
     @Query(   " SELECT * FROM words "
-            + " INNER JOIN words_trainings_join ON words_trainings_join.wrd_tra_wrd_id = words.wrd_id"
-            + " INNER JOIN trainings            ON training.tra_id = words_trainings_join.wrd_tra_tra_id"
-            + " WHERE tra_id = :id ")
-    List<WordEntity> getWordsByTrainingId();
+            + " INNER JOIN words_trainings_joins ON words_trainings_joins.wrd_tra_wrd_id = words.wrd_id"
+            + " WHERE words_trainings_joins.wrd_tra_tra_id = :id ")
+    List<WordEntity> getWordsByTrainingId(int id);
 
+    @Insert
+    public Long insertTraining(TrainingEntity trainingEntity);
 
     @Update
     public void updateTraining(TrainingEntity training);
