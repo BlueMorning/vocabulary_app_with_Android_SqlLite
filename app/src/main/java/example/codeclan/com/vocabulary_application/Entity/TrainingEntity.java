@@ -12,7 +12,7 @@ public class TrainingEntity {
 
     // Properties
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="tra_id")
     private final int id;
 

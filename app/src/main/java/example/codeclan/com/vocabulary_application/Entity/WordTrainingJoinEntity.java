@@ -4,7 +4,7 @@ package example.codeclan.com.vocabulary_application.Entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 
-@Entity(tableName = "word_training_join",
+@Entity(tableName = "words_trainings_join",
         primaryKeys = { "wrd_tra_wrd_id", "wrd_tra_tra_id" },
         foreignKeys = {
                 @ForeignKey(    entity          = WordEntity.class,

@@ -11,7 +11,7 @@ public class WordEntity {
 
     // Properties
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "wrd_id")
     public final int id;
 

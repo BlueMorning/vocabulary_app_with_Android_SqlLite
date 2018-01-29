@@ -14,7 +14,7 @@ public class StatsEntity {
 
     // Properties
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sta_id")
     private final int id;
 
