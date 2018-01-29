@@ -86,6 +86,39 @@ public class WordEntityTest {
     }
 
 
-    
+    @Test
+    public void getAllWords(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "");
+        wordDao.insertWord(wordEntity);
+
+        wordEntity = new WordEntity(EnumWordType.NOUN, "stone", "");
+        wordDao.insertWord(wordEntity);
+
+        wordEntity = new WordEntity(EnumWordType.NOUN, "gravel", "");
+        wordDao.insertWord(wordEntity);
+
+
+        assertEquals(3, wordDao.getAll().size());
+    }
+
+    @Test
+    public void getAllWordsBySpelling(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rOck", "");
+        wordDao.insertWord(wordEntity);
+
+        wordEntity = new WordEntity(EnumWordType.NOUN, "stOne", "");
+        wordDao.insertWord(wordEntity);
+
+        wordEntity = new WordEntity(EnumWordType.NOUN, "grAvel", "");
+        wordDao.insertWord(wordEntity);
+
+
+        assertEquals(2, wordDao.getAllBySpelling("O").size());
+        assertEquals(1, wordDao.getAllBySpelling("a").size());
+        assertEquals(2, wordDao.getAllBySpelling("R").size());
+    }
+
 
 }
