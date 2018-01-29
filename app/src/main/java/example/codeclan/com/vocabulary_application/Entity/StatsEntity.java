@@ -48,7 +48,7 @@ public class StatsEntity {
     @ColumnInfo(name = "sta_wrd_id")
     private Long wordId;
 
-    public StatsEntity(Long id, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers, Long wordId) {
+    public StatsEntity(Long id, Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
         this.id                                 = id;
         this.trainingStep                       = trainingStep;
         this.confidenceLevel                    = confidenceLevel;
@@ -62,7 +62,7 @@ public class StatsEntity {
     }
 
     @Ignore
-    public StatsEntity(int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers, Long wordId) {
+    public StatsEntity(Long wordId, int trainingStep,  int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
         this.trainingStep                       = trainingStep;
         this.confidenceLevel                    = confidenceLevel;
         this.totalAnswers                       = totalAnswers;

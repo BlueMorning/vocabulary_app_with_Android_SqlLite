@@ -16,12 +16,14 @@ import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 @Dao
 public interface StatsDao {
 
-
     @Query("SELECT * FROM stats WHERE sta_id = :id")
+    StatsEntity getStatsByStatsId(Long id);
+
+    @Query("SELECT * FROM stats WHERE sta_wrd_id = :id")
     StatsEntity getStatsByWordId(Long id);
 
     @Insert
-    public Long insertTraining(StatsEntity statsEntity);
+    public Long insertStats(StatsEntity statsEntity);
 
     @Update
     public void updateStats(StatsEntity stats);

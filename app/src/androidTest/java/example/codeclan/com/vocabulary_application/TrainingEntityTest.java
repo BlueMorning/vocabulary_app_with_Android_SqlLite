@@ -23,7 +23,7 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import static org.junit.Assert.assertEquals;
 
 
-public class TrainingTest {
+public class TrainingEntityTest {
 
     private TrainingDao trainingDao;
     private TrainingEntity trainingEntity;
