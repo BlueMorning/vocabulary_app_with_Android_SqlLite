@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
@@ -16,6 +17,7 @@ public class WordEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "wrd_id")
+    @NonNull
     public Long id;
 
     @ColumnInfo(name = "wrd_type")
@@ -46,6 +48,10 @@ public class WordEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public EnumWordType getType() {

@@ -6,6 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "stats", foreignKeys = @ForeignKey(entity        = WordEntity.class,
                                                        parentColumns = "wrd_id",
@@ -17,6 +18,7 @@ public class StatsEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sta_id")
+    @NonNull
     private Long id;
 
     @ColumnInfo(name = "sta_training_step")
@@ -77,6 +79,10 @@ public class StatsEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getTrainingStep() {

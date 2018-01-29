@@ -17,9 +17,6 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by horizon on 29/01/2018.
- */
 
 public class MeaningEntityTest {
 
@@ -73,7 +70,62 @@ public class MeaningEntityTest {
 
     @Test
     public void canUpdateMeaning(){
-        
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.PHRASAL_VERB, "to pull out", "");
+        Long word_id = wordDao.insertWord(wordEntity);
+        assertEquals(1, wordDao.getAll().size());
+
+        MeaningEntity meaning = new MeaningEntity(word_id, "to stop being involved in an activity, event, or situation",
+                "The firm is pulling out of the personal computer business",
+                "to stop, to break off", "to continue");
+        Long meaning_id = meaningDao.insertMeaning(meaning);
+
+        meaning = meaningDao.getMeaningByMeaningId(meaning_id);
+        meaning.setDefinition("if a train pulls out, it leaves a station");
+        meaningDao.updateMeaning(meaning);
+
+        assertEquals("if a train pulls out, it leaves a station",
+                meaningDao.getMeaningByMeaningId(meaning_id).getDefinition());
+
+    }
+
+
+    @Test
+    public void canDeleteMeaning(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.PHRASAL_VERB, "to pull out", "");
+        Long word_id = wordDao.insertWord(wordEntity);
+        assertEquals(1, wordDao.getAll().size());
+
+        MeaningEntity meaning = new MeaningEntity(word_id, "to stop being involved in an activity, event, or situation",
+                "The firm is pulling out of the personal computer business",
+                "to stop, to break off", "to continue");
+        Long meaning_id = meaningDao.insertMeaning(meaning);
+
+        assertEquals(1, meaningDao.getMeaningsByWordId(word_id).size());
+
+        meaningDao.deleteMeaning(meaning);
+
+        assertEquals(0, meaningDao.getMeaningsByWordId(word_id).size());
+    }
+
+    @Test
+    public void canDeleteMeaningById(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.PHRASAL_VERB, "to pull out", "");
+        Long word_id = wordDao.insertWord(wordEntity);
+        assertEquals(1, wordDao.getAll().size());
+
+        MeaningEntity meaning = new MeaningEntity(word_id, "to stop being involved in an activity, event, or situation",
+                "The firm is pulling out of the personal computer business",
+                "to stop, to break off", "to continue");
+        Long meaning_id = meaningDao.insertMeaning(meaning);
+
+        assertEquals(1, meaningDao.getMeaningsByWordId(word_id).size());
+
+        meaningDao.deleteMeaningByMeaningId(meaning_id);
+
+        assertEquals(0, meaningDao.getMeaningsByWordId(word_id).size());
     }
 
 

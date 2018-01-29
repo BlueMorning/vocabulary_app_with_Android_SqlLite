@@ -22,7 +22,6 @@ public interface MeaningDao {
     @Query("SELECT * FROM meanings WHERE mig_wrd_id = :id")
     List<MeaningEntity> getMeaningsByWordId(Long id);
 
-
     @Insert
     public Long insertMeaning(MeaningEntity meaningEntity);
 
@@ -31,5 +30,8 @@ public interface MeaningDao {
 
     @Delete
     public void deleteMeaning(MeaningEntity meaning);
+
+    @Query("DELETE FROM meanings WHERE mig_id = :id")
+    public void deleteMeaningByMeaningId(Long id);
 
 }

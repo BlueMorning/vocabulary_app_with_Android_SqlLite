@@ -5,8 +5,11 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.time.LocalDate;
+
+import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 
 @Entity(tableName = "trainings")
 public class TrainingEntity {
@@ -15,10 +18,11 @@ public class TrainingEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="tra_id")
+    @NonNull
     private Long id;
 
     @ColumnInfo(name = "tra_status")
-    private char status;
+    private EnumTrainingStatus status;
 
     @ColumnInfo(name = "tra_number")
     private int number;
@@ -34,7 +38,7 @@ public class TrainingEntity {
 
 
 
-    public TrainingEntity(Long id, char status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
+    public TrainingEntity(Long id, EnumTrainingStatus status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
         this.id                 = id;
         this.status             = status;
         this.number             = number;
@@ -44,7 +48,7 @@ public class TrainingEntity {
     }
 
     @Ignore
-    public TrainingEntity(char status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
+    public TrainingEntity(EnumTrainingStatus status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
         this.status             = status;
         this.number             = number;
         this.totalWords         = totalWords;
@@ -59,11 +63,15 @@ public class TrainingEntity {
         return id;
     }
 
-    public char getStatus() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EnumTrainingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(EnumTrainingStatus status) {
         this.status = status;
     }
 

@@ -9,12 +9,14 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import example.codeclan.com.vocabulary_application.Converter.EnumTrainingStatusConverter;
 import example.codeclan.com.vocabulary_application.Converter.EnumWordTypeConverter;
 import example.codeclan.com.vocabulary_application.Converter.LocalDateTypeConverter;
 import example.codeclan.com.vocabulary_application.Dao.MeaningDao;
 import example.codeclan.com.vocabulary_application.Dao.StatsDao;
 import example.codeclan.com.vocabulary_application.Dao.TrainingDao;
 import example.codeclan.com.vocabulary_application.Dao.WordDao;
+import example.codeclan.com.vocabulary_application.Dao.WordTrainingJoinDao;
 import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
@@ -28,7 +30,7 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
                         StatsEntity.class,
                         TrainingEntity.class,
                         WordTrainingJoinEntity.class}, version = 1)
-@TypeConverters({LocalDateTypeConverter.class, EnumWordTypeConverter.class})
+@TypeConverters({LocalDateTypeConverter.class, EnumWordTypeConverter.class, EnumTrainingStatusConverter.class})
 public abstract class WordsRoomDatabase extends RoomDatabase {
 
     private static WordsRoomDatabase instance;
@@ -52,5 +54,7 @@ public abstract class WordsRoomDatabase extends RoomDatabase {
     public abstract TrainingDao trainingDao();
 
     public abstract StatsDao statsDao();
+
+    public abstract WordTrainingJoinDao wordTrainingJoinDao();
 
 }

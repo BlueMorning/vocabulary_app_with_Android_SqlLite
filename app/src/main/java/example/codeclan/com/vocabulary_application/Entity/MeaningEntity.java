@@ -6,6 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "meanings", foreignKeys = @ForeignKey(   entity        = WordEntity.class,
                                                             parentColumns = "wrd_id",
@@ -17,6 +18,7 @@ public class MeaningEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="mig_id")
+    @NonNull
     private Long id;
 
     @ColumnInfo(name="mig_definition")
@@ -57,6 +59,10 @@ public class MeaningEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDefinition() {

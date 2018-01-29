@@ -3,6 +3,7 @@ package example.codeclan.com.vocabulary_application.Entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "words_trainings_joins",
         primaryKeys = { "wrd_tra_wrd_id", "wrd_tra_tra_id" },
@@ -16,12 +17,29 @@ import android.arch.persistence.room.ForeignKey;
         })
 public class WordTrainingJoinEntity {
 
-    public final int wrd_tra_wrd_id;
-    public final int wrd_tra_tra_id;
+    @NonNull
+    private Long wrd_tra_wrd_id;
+    @NonNull
+    private Long wrd_tra_tra_id;
 
-    public WordTrainingJoinEntity(final int wrd_tra_wrd_id, final int wrd_tra_tra_id){
+    public WordTrainingJoinEntity(Long wrd_tra_wrd_id, Long wrd_tra_tra_id){
         this.wrd_tra_wrd_id = wrd_tra_wrd_id;
         this.wrd_tra_tra_id = wrd_tra_tra_id;
     }
 
+    public java.lang.Long getWrd_tra_wrd_id() {
+        return wrd_tra_wrd_id;
+    }
+
+    public void setWrd_tra_wrd_id(java.lang.Long wrd_tra_wrd_id) {
+        this.wrd_tra_wrd_id = wrd_tra_wrd_id;
+    }
+
+    public Long getWrd_tra_tra_id() {
+        return wrd_tra_tra_id;
+    }
+
+    public void setWrd_tra_tra_id(Long wrd_tra_tra_id) {
+        this.wrd_tra_tra_id = wrd_tra_tra_id;
+    }
 }
