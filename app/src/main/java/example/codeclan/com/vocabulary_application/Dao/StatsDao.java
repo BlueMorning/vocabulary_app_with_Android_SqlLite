@@ -18,7 +18,7 @@ public interface StatsDao {
 
 
     @Query("SELECT * FROM stats WHERE sta_id = :id")
-    List<StatsEntity> getStatsByWordId(int id);
+    StatsEntity getStatsByWordId(Long id);
 
     @Insert
     public Long insertTraining(StatsEntity statsEntity);

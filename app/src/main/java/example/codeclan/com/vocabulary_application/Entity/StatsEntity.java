@@ -4,6 +4,7 @@ package example.codeclan.com.vocabulary_application.Entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "stats", foreignKeys = @ForeignKey(entity        = WordEntity.class,
@@ -16,7 +17,7 @@ public class StatsEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "sta_id")
-    private final int id;
+    private Long id;
 
     @ColumnInfo(name = "sta_training_step")
     private int trainingStep;
@@ -43,10 +44,23 @@ public class StatsEntity {
     private int lastTrainingTotalIncorrectAnswers;
 
     @ColumnInfo(name = "sta_wrd_id")
-    private int wordId;
+    private Long wordId;
 
-    public StatsEntity(int id, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers, int wordId) {
+    public StatsEntity(Long id, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers, Long wordId) {
         this.id                                 = id;
+        this.trainingStep                       = trainingStep;
+        this.confidenceLevel                    = confidenceLevel;
+        this.totalAnswers                       = totalAnswers;
+        this.totalCorrectAnswers                = totalCorrectAnswers;
+        this.totalIncorrectAnswers              = totalIncorrectAnswers;
+        this.lastTrainingTotalAnswers           = lastTrainingTotalAnswers;
+        this.lastTrainingTotalCorrectAnswers    = lastTrainingTotalCorrectAnswers;
+        this.lastTrainingTotalIncorrectAnswers  = lastTrainingTotalIncorrectAnswers;
+        this.wordId                             = wordId;
+    }
+
+    @Ignore
+    public StatsEntity(int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers, Long wordId) {
         this.trainingStep                       = trainingStep;
         this.confidenceLevel                    = confidenceLevel;
         this.totalAnswers                       = totalAnswers;
@@ -61,7 +75,7 @@ public class StatsEntity {
 
     // Getters and Setters
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -129,11 +143,11 @@ public class StatsEntity {
         this.lastTrainingTotalIncorrectAnswers = lastTrainingTotalIncorrectAnswers;
     }
 
-    public int getWordId() {
+    public Long getWordId() {
         return wordId;
     }
 
-    public void setWordId(int wordId) {
+    public void setWordId(Long wordId) {
         this.wordId = wordId;
     }
 }

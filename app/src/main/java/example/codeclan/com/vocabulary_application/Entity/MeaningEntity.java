@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "meanings", foreignKeys = @ForeignKey(   entity        = WordEntity.class,
                                                             parentColumns = "wrd_id",
-                                                            childColumns  = "mid_wrd_id"))
+                                                            childColumns  = "mig_wrd_id"))
 public class MeaningEntity {
 
 
@@ -16,24 +16,24 @@ public class MeaningEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="mig_id")
-    private final int id;
+    private final Long id;
 
-    @ColumnInfo(name="mid_definition")
+    @ColumnInfo(name="mig_definition")
     private String definition;
 
-    @ColumnInfo(name = "mid_example")
+    @ColumnInfo(name = "mig_example")
     private String example;
 
-    @ColumnInfo(name = "mid_synonym")
+    @ColumnInfo(name = "mig_synonym")
     private String synonyms;
 
-    @ColumnInfo(name = "mid_antonym")
+    @ColumnInfo(name = "mig_antonym")
     private String antonyms;
 
-    @ColumnInfo(name= "mid_wrd_id")
+    @ColumnInfo(name= "mig_wrd_id")
     private int wordId;
 
-    public MeaningEntity(int id, String definition, String example, String synonyms, String antonyms, int wordId) {
+    public MeaningEntity(Long id, String definition, String example, String synonyms, String antonyms, int wordId) {
         this.id         = id;
         this.definition = definition;
         this.example    = example;
@@ -45,7 +45,7 @@ public class MeaningEntity {
 
     // Getters and Setters
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

@@ -20,12 +20,12 @@ public interface TrainingDao {
     List<TrainingEntity> getAll();
 
     @Query("SELECT * FROM trainings WHERE tra_id = :id")
-    List<TrainingEntity> getTrainingById(int id);
+    TrainingEntity getTrainingById(Long id);
 
     @Query(   " SELECT * FROM words "
             + " INNER JOIN words_trainings_joins ON words_trainings_joins.wrd_tra_wrd_id = words.wrd_id"
             + " WHERE words_trainings_joins.wrd_tra_tra_id = :id ")
-    List<WordEntity> getWordsByTrainingId(int id);
+    List<WordEntity> getWordsByTrainingId(Long id);
 
     @Insert
     public Long insertTraining(TrainingEntity trainingEntity);

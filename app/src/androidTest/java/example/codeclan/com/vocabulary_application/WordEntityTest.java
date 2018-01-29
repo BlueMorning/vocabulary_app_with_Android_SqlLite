@@ -3,6 +3,7 @@ package example.codeclan.com.vocabulary_application;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.util.Log;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,9 +16,6 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by horizon on 29/01/2018.
- */
 
 public class WordEntityTest {
 
@@ -40,10 +38,54 @@ public class WordEntityTest {
 
     @Test
     public void createWord(){
+
         WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "");
         wordDao.insertWord(wordEntity);
-
         assertEquals(1, wordDao.getAll().size());
     }
+
+    @Test
+    public void updateWord(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "");
+        Long word_id = wordDao.insertWord(wordEntity);
+
+        wordEntity = wordDao.getWordByWordId(word_id);
+        assertEquals(1, wordDao.getAll().size());
+
+        wordEntity.setSpelling("stone");
+        wordDao.updateWord(wordEntity);
+
+        assertEquals("stone", wordDao.getWordByWordId(wordEntity.getId()).getSpelling());
+
+    }
+
+    @Test
+    public void deleteWord(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "");
+        Long word_id          = wordDao.insertWord(wordEntity);
+        wordEntity            = wordDao.getWordByWordId(word_id);
+        assertEquals(1, wordDao.getAll().size());
+
+        wordDao.deleteWord(wordEntity);
+
+        assertEquals(0, wordDao.getAll().size());
+
+    }
+
+    @Test
+    public void deleteWordByWordId(){
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "");
+        Long word_id          = wordDao.insertWord(wordEntity);
+        assertEquals(1, wordDao.getAll().size());
+
+        wordDao.deleteWordByWordId(word_id);
+        assertEquals(0, wordDao.getAll().size());
+    }
+
+
+    
 
 }

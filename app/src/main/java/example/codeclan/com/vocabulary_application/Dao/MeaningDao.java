@@ -16,9 +16,11 @@ import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 @Dao
 public interface MeaningDao {
 
+    @Query("SELECT * FROM meanings WHERE mig_id = :id")
+    MeaningEntity getMeaningByMeaningId(Long id);
 
-    @Query("SELECT * FROM meanings WHERE mid_wrd_id = :id")
-    List<MeaningEntity> getMeaningsByWord(int id);
+    @Query("SELECT * FROM meanings WHERE mig_wrd_id = :id")
+    List<MeaningEntity> getMeaningsByWord(Long id);
 
     @Insert
     public Long insertMeaning(MeaningEntity meaningEntity);

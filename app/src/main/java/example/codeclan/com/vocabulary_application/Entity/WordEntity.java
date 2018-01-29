@@ -16,7 +16,7 @@ public class WordEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "wrd_id")
-    public int id;
+    public Long id;
 
     @ColumnInfo(name = "wrd_type")
     private EnumWordType type;
@@ -27,7 +27,7 @@ public class WordEntity {
     @ColumnInfo(name = "wrd_metadata")
     private String metadata;
 
-    public WordEntity(int id, EnumWordType type, String spelling, String metadata) {
+    public WordEntity(Long id, EnumWordType type, String spelling, String metadata) {
         this.id       = id;
         this.type     = type;
         this.spelling = spelling;
@@ -44,10 +44,9 @@ public class WordEntity {
 
     // Setters and Getters
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
-
 
     public EnumWordType getType() {
         return type;

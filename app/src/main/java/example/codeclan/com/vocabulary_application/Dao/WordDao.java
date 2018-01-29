@@ -24,13 +24,13 @@ public interface WordDao {
     List<WordEntity> getAllBySpelling(String spelling);
 
     @Query("SELECT * FROM words WHERE wrd_id = :id")
-    List<WordEntity> getWordByWordId(int id);
+    WordEntity getWordByWordId(Long id);
 
     @Query("SELECT * FROM stats WHERE sta_wrd_id = :id")
-    List<StatsEntity> getWordStatsByWordId(int id);
+    StatsEntity getWordStatsByWordId(Long id);
 
-    @Query("SELECT * FROM meanings WHERE mid_wrd_id = :id")
-    List<MeaningEntity> getWordMeaningsByWordId(int id);
+    @Query("SELECT * FROM meanings WHERE mig_wrd_id = :id")
+    List<MeaningEntity> getWordMeaningsByWordId(Long id);
 
     @Insert
     public Long insertWord(WordEntity word);
@@ -40,6 +40,9 @@ public interface WordDao {
 
     @Delete
     public void deleteWord(WordEntity word);
+
+    @Query("DELETE FROM words WHERE wrd_id = :id")
+    public void deleteWordByWordId(Long id);
 
 
 }

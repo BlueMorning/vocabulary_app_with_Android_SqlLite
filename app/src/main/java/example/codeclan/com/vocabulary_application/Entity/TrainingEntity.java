@@ -3,6 +3,7 @@ package example.codeclan.com.vocabulary_application.Entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public class TrainingEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="tra_id")
-    private final int id;
+    private Long id;
 
     @ColumnInfo(name = "tra_status")
     private char status;
@@ -33,8 +34,17 @@ public class TrainingEntity {
 
 
 
-    public TrainingEntity(int id, char status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
+    public TrainingEntity(Long id, char status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
         this.id                 = id;
+        this.status             = status;
+        this.number             = number;
+        this.totalWords         = totalWords;
+        this.stepNumber         = stepNumber;
+        this.nextBestTraining   = nextBestTraining;
+    }
+
+    @Ignore
+    public TrainingEntity(char status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
         this.status             = status;
         this.number             = number;
         this.totalWords         = totalWords;
@@ -45,7 +55,7 @@ public class TrainingEntity {
 
     // Getters and Setters
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
