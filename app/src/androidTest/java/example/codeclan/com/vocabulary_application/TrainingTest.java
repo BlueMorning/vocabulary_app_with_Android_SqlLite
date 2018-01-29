@@ -86,12 +86,73 @@ public class TrainingTest {
     }
 
     @Test
-    public void canUpdateTraining(){
+    public void canRemoveWordsFromTraining(){
+        trainingEntity = new TrainingEntity(EnumTrainingStatus.ONGOING,
+                1,
+                10,
+                1,
+                LocalDate.now());
+
+        trainingEntity.setId(trainingDao.insertTraining(trainingEntity));
+
+        assertEquals(1, trainingDao.getAll().size());
+
+
+
+        WordEntity wordEntity = new WordEntity(EnumWordType.NOUN, "rock", "rocks");
+        wordEntity.setId(wordDao.insertWord(wordEntity));
+
+        wordTrainingJoinEntity = new WordTrainingJoinEntity(trainingEntity.getId(), wordEntity.getId());
+        wordTrainingJoinDao.insertWordTrainingJoin(wordTrainingJoinEntity);
+
+        assertEquals(1, wordTrainingJoinDao.getWordsTrainingJoinEntityBytrainingId(trainingEntity.getId()).size());
+
+        wordTrainingJoinDao.deleteWordTrainingJoin(wordTrainingJoinEntity);
+
+        assertEquals(0, wordTrainingJoinDao.getWordsTrainingJoinEntityBytrainingId(trainingEntity.getId()).size());
+
 
     }
 
     @Test
+    public void canUpdateTraining(){
+        trainingEntity = new TrainingEntity(EnumTrainingStatus.ONGOING,
+                1,
+                10,
+                1,
+                LocalDate.now());
+
+        trainingEntity.setId(trainingDao.insertTraining(trainingEntity));
+
+        assertEquals(1, trainingDao.getAll().size());
+
+
+        trainingEntity = trainingDao.getTrainingById(trainingEntity.getId());
+        trainingEntity.setTotalWords(20);
+
+        trainingDao.updateTraining(trainingEntity);
+        trainingEntity = trainingDao.getTrainingById(trainingEntity.getId());
+
+
+        assertEquals(20, trainingDao.getTrainingById(trainingEntity.getId()).getTotalWords());
+    }
+
+    @Test
     public void canDeleteTraining(){
+
+        trainingEntity = new TrainingEntity(EnumTrainingStatus.ONGOING,
+                1,
+                10,
+                1,
+                LocalDate.now());
+
+        trainingEntity.setId(trainingDao.insertTraining(trainingEntity));
+
+        assertEquals(1, trainingDao.getAll().size());
+
+        trainingDao.deleteTraining(trainingEntity);
+
+        assertEquals(0, trainingDao.getAll().size());
 
     }
 
