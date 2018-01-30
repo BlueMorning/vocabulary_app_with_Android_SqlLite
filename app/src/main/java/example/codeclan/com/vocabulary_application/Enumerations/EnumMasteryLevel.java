@@ -6,8 +6,8 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum EnumMasteryLevel {
 
-    ALL("All", 0),
-    UNKNOWN("Unknow", 1),
+    ALL("All levels", 0),
+    NEW("New", 1),
     LOW("Low", 2),
     MEDIUM("Medium", 3),
     HIGH("High",4);

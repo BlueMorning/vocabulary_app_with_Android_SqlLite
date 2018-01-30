@@ -21,6 +21,7 @@ import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
+import example.codeclan.com.vocabulary_application.Model.StatsModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumMasteryLevelAdapter;
@@ -130,7 +131,8 @@ public class WordsListActivity extends AppCompatActivity {
         wordsEntityList = database.wordDao().getAllBySpellingAndTypeAndMastery(spelling, enumWordType, enumMasteryLevel);
 
         wordModels = new ArrayList<>(wordsEntityList.stream().map(wordEntity -> {
-            WordModel wm = new WordModel(wordEntity.getId(), wordEntity.getType(), wordEntity.getSpelling(), wordEntity.getMetadata());
+            WordModel wm = new WordModel(wordEntity);
+            wm.setStatsModel(new StatsModel(database.statsDao().getStatsByWordId(wordEntity.getId())));
             return wm;
         }
         ).collect(Collectors.toList()));

@@ -6,7 +6,7 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum  EnumWordType {
 
-    ALL("All", null),
+    ALL("All types", null),
     NOUN("Noun","N"),
     VERB("Verb", "V"),
     ADVERB("Adverb", "AV"),

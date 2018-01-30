@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,10 +33,13 @@ public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
         WordModel currentWordModel = (WordModel)getItem(position);
 
         TextView wordSpelling = listItemView.findViewById(R.id.listWordsWordSpelling);
-        wordSpelling.setText(currentWordModel.getSpelling());
+        wordSpelling.setText(currentWordModel.getWordEntity().getSpelling());
 
-        TextView wordType =listItemView.findViewById(R.id.listWordsWordType);
-        wordType.setText(currentWordModel.getType().getLabel());
+        TextView wordType = listItemView.findViewById(R.id.listWordsWordType);
+        wordType.setText(currentWordModel.getWordEntity().getType().getShortLabel());
+
+        ImageView imageMasteryLevel = listItemView.findViewById(R.id.imageMasteryLevel);
+        imageMasteryLevel.setImageResource(currentWordModel.getMasteryLevelDrawableId());
 
         Button buttonModifyWord = listItemView.findViewById(R.id.listWordsButtonModify);
         buttonModifyWord.setTag(currentWordModel);

@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="example.codeclan.com.vocabulary_application.Activity.HomePageActivity"
-    android:background="@drawable/megamind_big">
+    android:background="@android:color/background_light"
+    tools:context="example.codeclan.com.vocabulary_application.Activity.HomePageActivity">
 
 
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/megamind_big" />
 </android.support.constraint.ConstraintLayout>

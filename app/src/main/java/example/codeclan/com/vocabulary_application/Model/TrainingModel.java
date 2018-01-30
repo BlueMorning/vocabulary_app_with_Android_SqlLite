@@ -9,13 +9,19 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStat
  * Created by horizon on 29/01/2018.
  */
 
-public class TrainingModel extends TrainingEntity {
+public class TrainingModel  {
 
-    public TrainingModel(Long id, EnumTrainingStatus status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
-        super(id, status, number, totalWords, stepNumber, nextBestTraining);
+    private TrainingEntity trainingEntity;
+
+    public TrainingModel(TrainingModel trainingEntity){
+        trainingEntity = trainingEntity;
     }
 
-    public TrainingModel(EnumTrainingStatus status, int number, int totalWords, int stepNumber, LocalDate nextBestTraining) {
-        super(status, number, totalWords, stepNumber, nextBestTraining);
+    public TrainingEntity getTrainingEntity() {
+        return trainingEntity;
+    }
+
+    public void setTrainingEntity(TrainingEntity trainingEntity) {
+        this.trainingEntity = trainingEntity;
     }
 }
