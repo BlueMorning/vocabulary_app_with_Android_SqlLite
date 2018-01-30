@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_vocab"
+        android:enabled="true"
+        android:icon="@drawable/training"
+        android:title="@string/nav_vocab"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/nav_training"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/training"
+        android:title="@string/nav_training"
+        android:visible="true"
+        app:showAsAction="always" />
+</menu>

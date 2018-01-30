@@ -6,6 +6,7 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum  EnumWordType {
 
+    ALL("All", null),
     NOUN("Noun","N"),
     VERB("Verb", "V"),
     ADVERB("Adverb", "AV"),
@@ -20,11 +21,11 @@ public enum  EnumWordType {
         this.shortLabel = shortLabel;
     }
 
-    String getLabel(){
+    public String getLabel(){
         return this.label;
     }
 
-    String getShortLabel(){
+    public String getShortLabel(){
         return this.shortLabel;
     }
 

@@ -12,7 +12,7 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 public class EnumTrainingStatusConverter {
 
     @TypeConverter
-    public static EnumTrainingStatus toEnumWordType(String statusEnum) {
+    public static EnumTrainingStatus toEnumTrainingStatus(String statusEnum) {
         return statusEnum == null ? null : EnumTrainingStatus.valueOf(statusEnum);
     }
 

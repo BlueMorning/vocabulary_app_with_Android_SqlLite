@@ -55,7 +55,7 @@ public class WordEntity {
     }
 
     public EnumWordType getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(EnumWordType type) {

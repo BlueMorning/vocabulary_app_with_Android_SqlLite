@@ -8,9 +8,11 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
+
 @Entity(tableName = "stats", foreignKeys = @ForeignKey(entity        = WordEntity.class,
                                                        parentColumns = "wrd_id",
-                                                       childColumns  = "sta_id"))
+                                                       childColumns  = "sta_wrd_id"))
 public class StatsEntity {
 
 
@@ -24,8 +26,8 @@ public class StatsEntity {
     @ColumnInfo(name = "sta_training_step")
     private int trainingStep;
 
-    @ColumnInfo(name = "sta_confidence_level")
-    private int confidenceLevel;
+    @ColumnInfo(name = "sta_mastery_level")
+    private EnumMasteryLevel masteryLevel;
 
     @ColumnInfo(name = "sta_total_answers")
     private int totalAnswers;
@@ -48,10 +50,10 @@ public class StatsEntity {
     @ColumnInfo(name = "sta_wrd_id")
     private Long wordId;
 
-    public StatsEntity(Long id, Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
+    public StatsEntity(Long id, Long wordId, int trainingStep, EnumMasteryLevel masteryLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
         this.id                                 = id;
         this.trainingStep                       = trainingStep;
-        this.confidenceLevel                    = confidenceLevel;
+        this.masteryLevel = masteryLevel;
         this.totalAnswers                       = totalAnswers;
         this.totalCorrectAnswers                = totalCorrectAnswers;
         this.totalIncorrectAnswers              = totalIncorrectAnswers;
@@ -62,9 +64,9 @@ public class StatsEntity {
     }
 
     @Ignore
-    public StatsEntity(Long wordId, int trainingStep,  int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
+    public StatsEntity(Long wordId, int trainingStep,  EnumMasteryLevel masteryLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers) {
         this.trainingStep                       = trainingStep;
-        this.confidenceLevel                    = confidenceLevel;
+        this.masteryLevel                       = masteryLevel;
         this.totalAnswers                       = totalAnswers;
         this.totalCorrectAnswers                = totalCorrectAnswers;
         this.totalIncorrectAnswers              = totalIncorrectAnswers;
@@ -93,12 +95,12 @@ public class StatsEntity {
         this.trainingStep = trainingStep;
     }
 
-    public int getConfidenceLevel() {
-        return confidenceLevel;
+    public EnumMasteryLevel getMasteryLevel() {
+        return masteryLevel;
     }
 
-    public void setConfidenceLevel(int confidenceLevel) {
-        this.confidenceLevel = confidenceLevel;
+    public void setMasteryLevel(EnumMasteryLevel masteryLevel) {
+        this.masteryLevel = masteryLevel;
     }
 
     public int getTotalAnswers() {

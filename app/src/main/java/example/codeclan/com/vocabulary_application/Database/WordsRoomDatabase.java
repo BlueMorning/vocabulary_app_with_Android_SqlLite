@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Database;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.db.SupportSQLiteOpenHelper;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.DatabaseConfiguration;
@@ -8,7 +9,11 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+import android.os.AsyncTask;
 
+import java.util.Random;
+
+import example.codeclan.com.vocabulary_application.Converter.EnumMasteryLevelConverter;
 import example.codeclan.com.vocabulary_application.Converter.EnumTrainingStatusConverter;
 import example.codeclan.com.vocabulary_application.Converter.EnumWordTypeConverter;
 import example.codeclan.com.vocabulary_application.Converter.LocalDateTypeConverter;
@@ -29,8 +34,11 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
                         MeaningEntity.class,
                         StatsEntity.class,
                         TrainingEntity.class,
-                        WordTrainingJoinEntity.class}, version = 1)
-@TypeConverters({LocalDateTypeConverter.class, EnumWordTypeConverter.class, EnumTrainingStatusConverter.class})
+                        WordTrainingJoinEntity.class}, version = 4)
+@TypeConverters({   LocalDateTypeConverter.class,
+                    EnumWordTypeConverter.class,
+                    EnumTrainingStatusConverter.class,
+                    EnumMasteryLevelConverter.class})
 public abstract class WordsRoomDatabase extends RoomDatabase {
 
     private static WordsRoomDatabase instance;
@@ -40,7 +48,10 @@ public abstract class WordsRoomDatabase extends RoomDatabase {
             synchronized (WordsRoomDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context,
-                            WordsRoomDatabase.class, "vocab_database").build();
+                            WordsRoomDatabase.class, "vocab_database")
+                            .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
+                            .build();
                 }
             }
         }
@@ -56,5 +67,4 @@ public abstract class WordsRoomDatabase extends RoomDatabase {
     public abstract StatsDao statsDao();
 
     public abstract WordTrainingJoinDao wordTrainingJoinDao();
-
 }

@@ -67,7 +67,7 @@ public class StatsEntityTest {
 
         assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
 
-        statsEntity.setConfidenceLevel(4);
+        statsEntity.setMasteryLevel(4);
         statsDao.updateStats(statsEntity);
 
         assertEquals(4, statsDao.getStatsByWordId(wordEntity.getId()).getConfidenceLevel());
