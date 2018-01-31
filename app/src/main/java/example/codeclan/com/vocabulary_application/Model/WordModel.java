@@ -2,6 +2,7 @@ package example.codeclan.com.vocabulary_application.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
@@ -102,6 +103,17 @@ public class WordModel {
         else{
             db.wordDao().updateWord(this.wordEntity);
         }
+
+        ArrayList<Long> meaningsListToKeep = new ArrayList<>(this.meaningsList.stream()
+                                                .map(m ->  m.getMeaningEntity().getId()).collect(Collectors.toList()));
+        List<MeaningEntity> meaningEntities = db.meaningDao().getMeaningsByWordId(this.wordEntity.getId());
+        for(MeaningEntity meaningEntity : meaningEntities){
+
+            if(! meaningsListToKeep.contains(meaningEntity.getId())){
+                db.meaningDao().deleteMeaningByMeaningId(meaningEntity.getId());
+            }
+        }
+
 
         for(MeaningModel meaningModel : this.meaningsList){
 
