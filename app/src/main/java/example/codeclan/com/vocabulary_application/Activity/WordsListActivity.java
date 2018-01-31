@@ -160,4 +160,11 @@ public class WordsListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickViewWord(View button){
+        Intent intent = new Intent(this, ViewWordActivity.class);
+        WordEntity wordEntityToView = ((WordModel)button.getTag()).getWordEntity();
+        intent.putExtra("wordEntity", wordEntityToView);
+        startActivity(intent);
+    }
+
 }

@@ -54,6 +54,9 @@ public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
         Button buttonModifyWord = listItemView.findViewById(R.id.listWordsButtonModify);
         buttonModifyWord.setTag(currentWordModel);
 
+        Button buttonViewWord = listItemView.findViewById(R.id.listWordsButtonView);
+        buttonViewWord.setTag(currentWordModel);
+
         listItemView.setTag(currentWordModel);
 
         return listItemView;

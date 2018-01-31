@@ -60,8 +60,8 @@ public class CreateWordActivity extends AppCompatActivity {
 
         database = WordsRoomDatabase.getDatabase(this);
 
-        wordSpellingTextView = findViewById(R.id.createWordSpelling);
-        listWordTypesSpinner = findViewById(R.id.createWordTypesList);
+        wordSpellingTextView = findViewById(R.id.viewWordSpelling);
+        listWordTypesSpinner = findViewById(R.id.viewWordType);
         addMeaningButton     = findViewById(R.id.createWordAddMeaningButton);
         wordMeaningsListView = findViewById(R.id.createWordMeaningsList);
         saveWordButton       = findViewById(R.id.createWordSaveButton);
