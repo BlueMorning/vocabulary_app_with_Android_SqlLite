@@ -145,4 +145,11 @@ public class WordModel {
 
         return this.meaningsList;
     }
+
+    public void delete() {
+        this.db.meaningDao().deleteMeaningByWordId(this.wordEntity.getId());
+        this.db.statsDao().deleteStatsByWordId(this.wordEntity.getId());
+        this.db.wordTrainingJoinDao().deleteWordTrainingJoinByWordId(this.wordEntity.getId());
+        this.db.wordDao().deleteWordByWordId(this.wordEntity.getId());
+    }
 }

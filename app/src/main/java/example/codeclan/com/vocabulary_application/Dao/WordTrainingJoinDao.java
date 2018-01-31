@@ -28,5 +28,6 @@ public interface WordTrainingJoinDao {
     @Delete
     public void deleteWordTrainingJoin(WordTrainingJoinEntity wordTrainingJoinEntity);
 
-
+    @Query("DELETE FROM words_trainings_joins WHERE wrd_tra_wrd_id = :id")
+    public void deleteWordTrainingJoinByWordId(Long id);
 }

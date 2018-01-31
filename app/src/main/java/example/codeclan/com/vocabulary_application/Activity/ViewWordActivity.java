@@ -1,7 +1,9 @@
 package example.codeclan.com.vocabulary_application.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -24,10 +26,9 @@ public class ViewWordActivity extends AppCompatActivity {
     private TextView viewWordSpelling;
     private TextView viewWordType;
     private ListView viewWordMeanings;
-
-
     private WordsRoomDatabase database;
     private WordModel wordModel;
+    private Button viewWordDeleteButton;
 
 
 
@@ -36,16 +37,17 @@ public class ViewWordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_word);
 
-        database = WordsRoomDatabase.getDatabase(this);
+        database                = WordsRoomDatabase.getDatabase(this);
+        WordEntity wordEntity   = (WordEntity)this.getIntent().getSerializableExtra("wordEntity");
+        wordModel               = new WordModel(wordEntity, database);
 
-        viewWordSpelling = findViewById(R.id.viewWordSpelling);
-        viewWordType     = findViewById(R.id.viewWordType);
-        viewWordMeanings = findViewById(R.id.viewWordMeaningsList);
+        viewWordSpelling        = findViewById(R.id.viewWordSpelling);
+        viewWordType            = findViewById(R.id.viewWordType);
+        viewWordMeanings        = findViewById(R.id.viewWordMeaningsList);
+        viewWordDeleteButton    = findViewById(R.id.viewWordDeleteButton);
 
+        viewWordDeleteButton.setTag(wordModel);
 
-
-        WordEntity wordEntity = (WordEntity)this.getIntent().getSerializableExtra("wordEntity");
-        wordModel = new WordModel(wordEntity, database);
 
 
         viewWordSpelling.setText(StringUtils.capitalize(wordModel.getWordEntity().getSpelling()));
@@ -55,5 +57,19 @@ public class ViewWordActivity extends AppCompatActivity {
         ViewMeaningsListAdapter meaningsListAdapter = new ViewMeaningsListAdapter(this, this.wordModel.getMeaningsList());
         viewWordMeanings.setAdapter(meaningsListAdapter);
 
+    }
+
+    public void onClickViewWordCloseButton(View button){
+        Intent intent = new Intent(this, WordsListActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickViewWordDeleteButton(View button){
+
+        WordModel wordModel = ((WordModel)(button).getTag());
+        wordModel.delete();
+
+        Intent intent = new Intent(this, WordsListActivity.class);
+        startActivity(intent);
     }
 }
