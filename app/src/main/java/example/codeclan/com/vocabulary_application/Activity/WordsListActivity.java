@@ -131,8 +131,8 @@ public class WordsListActivity extends AppCompatActivity {
         wordsEntityList = database.wordDao().getAllBySpellingAndTypeAndMastery(spelling, enumWordType, enumMasteryLevel);
 
         wordModels = new ArrayList<>(wordsEntityList.stream().map(wordEntity -> {
-            WordModel wm = new WordModel(wordEntity);
-            wm.setStatsModel(new StatsModel(database.statsDao().getStatsByWordId(wordEntity.getId())));
+            WordModel wm = new WordModel(wordEntity, database);
+            wm.initialiseStatsModel();
             return wm;
         }
         ).collect(Collectors.toList()));

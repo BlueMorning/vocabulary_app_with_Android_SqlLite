@@ -19,13 +19,16 @@ public class WordModel {
     private WordEntity  wordEntity;
     private StatsModel  statsModel;
     private ArrayList<MeaningModel> meaningsList;
+    private WordsRoomDatabase db;
 
-    public WordModel(WordEntity wordEntity){
+    public WordModel(WordEntity wordEntity, WordsRoomDatabase db){
         this.wordEntity = wordEntity;
+        this.db = db;
     }
 
-    public WordModel(){
+    public WordModel(WordsRoomDatabase db){
         this.meaningsList = new ArrayList<>();
+        this.db = db;
     }
 
     public WordEntity getWordEntity(){
@@ -67,7 +70,6 @@ public class WordModel {
 
 
     public void setStatsModel(StatsModel statsModel) {
-
         this.statsModel = statsModel;
     }
 
@@ -77,9 +79,9 @@ public class WordModel {
         meaningsList.add(meaningModel);
     }
 
-    public void saveWord(WordsRoomDatabase db){
+    public void saveWord(){
 
-        if(this.wordEntity.getId() == 0){
+        if(this.wordEntity.getId() == null){
             this.wordEntity.setId(db.wordDao().insertWord(this.wordEntity));
         }
         else{
@@ -88,7 +90,7 @@ public class WordModel {
 
         for(MeaningModel meaningModel : this.meaningsList){
 
-            if(meaningModel.getMeaningEntity().getId() == 0){
+            if(meaningModel.getMeaningEntity().getId() == null){
                 meaningModel.getMeaningEntity().setWordId(this.wordEntity.getId());
                 db.meaningDao().insertMeaning(meaningModel.getMeaningEntity());
             }
@@ -99,5 +101,9 @@ public class WordModel {
     }
 
 
-
+    public void initialiseStatsModel() {
+        if(this.wordEntity.getId() != null) {
+            this.statsModel = new StatsModel(this.db.statsDao().getStatsByWordId(this.wordEntity.getId()));
+        }
+    }
 }

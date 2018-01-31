@@ -80,7 +80,7 @@ public class CreateWordActivity extends AppCompatActivity {
         addMeaningFrame.setVisibility(View.INVISIBLE);
 
 
-        wordModel = new WordModel();
+        wordModel = new WordModel(database);
         wordModel.createWordEntity(wordSpellingTextView.getText().toString(),
                                   ((EnumWordType)listWordTypesSpinner.getSelectedItem()));
 
@@ -94,9 +94,18 @@ public class CreateWordActivity extends AppCompatActivity {
 
     public void onClickCreateWordSaveButton(View button){
 
+        wordModel.getWordEntity().setSpelling(wordSpellingTextView.getText().toString());
+        wordModel.getWordEntity().setType((EnumWordType)listWordTypesSpinner.getSelectedItem());
+        wordModel.saveWord();
+
+        startWordsListActivity();
     }
 
     public void onclickCreateWordCancelButton(View button){
+        startWordsListActivity();
+    }
+
+    public void startWordsListActivity(){
         Intent intent = new Intent(this, WordsListActivity.class);
         startActivity(intent);
     }
