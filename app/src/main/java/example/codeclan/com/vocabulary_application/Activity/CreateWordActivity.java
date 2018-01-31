@@ -87,6 +87,7 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void onClickCreateWordAddMeaningButton(View button){
+        this.resetMeaningFields();
         meaningListFrame.setVisibility(View.INVISIBLE);
         addMeaningFrame.setVisibility(View.VISIBLE);
     }
@@ -122,7 +123,12 @@ public class CreateWordActivity extends AppCompatActivity {
         wordMeaningsListView.setAdapter(meaningsListAdapter);
     }
 
-
+    public void resetMeaningFields(){
+        addMeaningMeaning.setText("");
+        addMeaningExample.setText("");
+        addMeaningSynonyms.setText("");
+        addMeaningAntonyms.setText("");
+    }
 
 
 }
