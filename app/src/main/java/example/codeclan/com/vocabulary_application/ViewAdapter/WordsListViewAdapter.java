@@ -7,13 +7,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
+import example.codeclan.com.vocabulary_application.Model.StatsModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
+import example.codeclan.com.vocabulary_application.Utils.StringUtils;
+
+import static example.codeclan.com.vocabulary_application.Utils.StringUtils.capitalize;
 
 
 public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
@@ -33,13 +38,18 @@ public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
         WordModel currentWordModel = (WordModel)getItem(position);
 
         TextView wordSpelling = listItemView.findViewById(R.id.listWordsWordSpelling);
-        wordSpelling.setText(currentWordModel.getWordEntity().getSpelling());
+        wordSpelling.setText(StringUtils.capitalize(currentWordModel.getWordEntity().getSpelling()));
 
         TextView wordType = listItemView.findViewById(R.id.listWordsWordType);
         wordType.setText(currentWordModel.getWordEntity().getType().getShortLabel());
 
         ImageView imageMasteryLevel = listItemView.findViewById(R.id.imageMasteryLevel);
         imageMasteryLevel.setImageResource(currentWordModel.getMasteryLevelDrawableId());
+
+        ProgressBar progressBar = listItemView.findViewById(R.id.listWordsWordTrainingStep);
+        progressBar.setMax(StatsModel.totalTrainingStep);
+        progressBar.setMin(0);
+        progressBar.setProgress(currentWordModel.getStatsModel().getStatsEntity().getTrainingStep());
 
         Button buttonModifyWord = listItemView.findViewById(R.id.listWordsButtonModify);
         buttonModifyWord.setTag(currentWordModel);

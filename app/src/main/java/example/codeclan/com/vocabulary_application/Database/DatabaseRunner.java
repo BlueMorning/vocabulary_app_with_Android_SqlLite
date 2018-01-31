@@ -46,7 +46,7 @@ public class DatabaseRunner {
 
             Long word_id = db.wordDao().insertWord(word);
 
-            StatsEntity stats = new StatsEntity(word_id, 0, EnumMasteryLevel.values()[new Random().nextInt(EnumMasteryLevel.values().length-1)+1], 0, 0, 0, 0, 0, 0);
+            StatsEntity stats = new StatsEntity(word_id, new Random().nextInt(11), EnumMasteryLevel.values()[new Random().nextInt(EnumMasteryLevel.values().length-1)+1], 0, 0, 0, 0, 0, 0);
             db.statsDao().insertStats(stats);
         }
     }

@@ -6,6 +6,8 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel
 
 public class StatsModel {
 
+    public static final int totalTrainingStep = 10;
+
     private StatsEntity statsEntity;
 
     public StatsModel(StatsEntity statsEntity){
@@ -23,4 +25,9 @@ public class StatsModel {
     public void setStatsEntity(StatsEntity statsEntity) {
         this.statsEntity = statsEntity;
     }
+
+    public String getTrainingStepLabel() {
+        return String.format("%s / %s", statsEntity.getTrainingStep(), totalTrainingStep);
+    }
+
 }
