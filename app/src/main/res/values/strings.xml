@@ -14,4 +14,6 @@
     <string name="synonyms">Synonyms</string>
     <string name="cancel">Cancel</string>
     <string name="antonyms">Antonyms</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
 </resources>

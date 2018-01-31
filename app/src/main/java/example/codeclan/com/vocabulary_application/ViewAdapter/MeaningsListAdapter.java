@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,6 +43,10 @@ public class MeaningsListAdapter extends ArrayAdapter<MeaningModel> {
 
         TextView antonyms = listItemView.findViewById(R.id.meaningAdapterAntonyms);
         antonyms.setText(currentMeaningModel.getMeaningEntity().getAntonyms());
+
+        Button modify = listItemView.findViewById(R.id.meaningModifyButton);
+        Button delete = listItemView.findViewById(R.id.meaningDeleteButton);
+
 
         listItemView.setTag(currentMeaningModel);
 
