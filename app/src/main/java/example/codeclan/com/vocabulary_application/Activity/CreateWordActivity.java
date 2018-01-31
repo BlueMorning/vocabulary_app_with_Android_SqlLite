@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
+import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumWordTypeAdapter;
 
@@ -31,6 +32,7 @@ public class CreateWordActivity extends AppCompatActivity {
 
 
     private WordsRoomDatabase database;
+    private WordModel wordModel;
 
     private EnumWordTypeAdapter enumWordTypeAdapter;
 
@@ -76,6 +78,9 @@ public class CreateWordActivity extends AppCompatActivity {
 
         addMeaningFrame.setVisibility(View.INVISIBLE);
 
+
+        wordModel = new WordModel();
+
     }
 
     public void onClickCreateWordAddMeaningButton(View button){
@@ -93,11 +98,15 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void onClickAddMeaningSaveButton(View button){
-
+        wordModel.addMeaning(addMeaningMeaning.getText().toString(),
+                             addMeaningExample.getText().toString(),
+                             addMeaningSynonyms.getText().toString(),
+                             addMeaningAntonyms.getText().toString());
     }
 
     public void onClickAddMeaningCancelButton(View button){
-
+        meaningListFrame.setVisibility(View.VISIBLE);
+        addMeaningFrame.setVisibility(View.INVISIBLE);
     }
 
 
