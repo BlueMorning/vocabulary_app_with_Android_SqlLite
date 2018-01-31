@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/antonyms"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meaningAdapterSynonyms" />
@@ -30,14 +31,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/example"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meaningAdapterMeaning" />
 
     <TextView
         android:id="@+id/meaningAdapterExample"
         android:layout_width="0dp"
-        android:layout_height="67dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:textSize="14sp"
@@ -53,7 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/meaning"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,7 @@
     <TextView
         android:id="@+id/meaningAdapterMeaning"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:textSize="14sp"
