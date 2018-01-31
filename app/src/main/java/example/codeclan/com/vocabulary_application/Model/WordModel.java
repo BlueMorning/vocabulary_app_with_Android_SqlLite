@@ -21,11 +21,12 @@ public class WordModel {
     private ArrayList<MeaningModel> meaningsList;
 
     public WordModel(WordEntity wordEntity){
+
         this.wordEntity = wordEntity;
     }
 
-    public WordModel(String wordSpelling, EnumWordType enumWordType){
-        this.wordEntity = new WordEntity(enumWordType, wordSpelling, "");
+    public WordModel(){
+
     }
 
     public WordEntity getWordEntity(){
@@ -33,6 +34,7 @@ public class WordModel {
     }
 
     public StatsModel getStatsModel(){
+
         return this.statsModel;
     }
 
@@ -55,7 +57,13 @@ public class WordModel {
         }
     }
 
+    public void createWordEntity(String wordSpelling, EnumWordType enumWordType){
+        this.wordEntity = new WordEntity(enumWordType, wordSpelling, "");
+    }
+
+
     public void setStatsModel(StatsModel statsModel) {
+
         this.statsModel = statsModel;
     }
 
