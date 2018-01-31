@@ -154,4 +154,11 @@ public class WordsListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickModifyWord(View button){
+        Intent intent = new Intent(this, CreateWordActivity.class);
+        WordModel wordModelToModify = (WordModel)button.getTag();
+        intent.putExtra("wordModel", wordModelToModify);
+        startActivity(intent);
+    }
+
 }

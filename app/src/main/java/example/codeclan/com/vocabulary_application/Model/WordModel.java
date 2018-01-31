@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
@@ -14,7 +15,7 @@ import example.codeclan.com.vocabulary_application.R;
  * Created by horizon on 29/01/2018.
  */
 
-public class WordModel {
+public class WordModel implements Serializable {
 
     private WordEntity  wordEntity;
     private StatsModel  statsModel;
