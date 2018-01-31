@@ -188,7 +188,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/addMeaningMeaning"
+                android:id="@+id/meaningAdapterMeaning"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
@@ -210,10 +210,10 @@
                 android:text="@string/example"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningMeaning" />
+                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterMeaning" />
 
             <EditText
-                android:id="@+id/addMeaningExample"
+                android:id="@+id/meaningAdapterExapmle"
                 android:layout_width="0dp"
                 android:layout_height="67dp"
                 android:layout_marginEnd="8dp"
@@ -236,10 +236,10 @@
                 android:text="@string/synonyms"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningExample" />
+                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterExapmle" />
 
             <EditText
-                android:id="@+id/addMeaningSynonyms"
+                android:id="@+id/meaningAdapterSynonims"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -259,7 +259,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/antonyms"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningSynonyms" />
+                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterSynonims" />
 
             <EditText
                 android:id="@+id/addMeaningAntonyms"

@@ -68,9 +68,9 @@ public class CreateWordActivity extends AppCompatActivity {
         listWordTypesSpinner.setAdapter(enumWordTypeAdapter);
 
         /* Add/Modify a meaning for a word */
-        addMeaningMeaning           = findViewById(R.id.addMeaningMeaning);
-        addMeaningExample           = findViewById(R.id.addMeaningExample);
-        addMeaningSynonyms          = findViewById(R.id.addMeaningSynonyms);
+        addMeaningMeaning           = findViewById(R.id.meaningAdapterMeaning);
+        addMeaningExample           = findViewById(R.id.meaningAdapterExapmle);
+        addMeaningSynonyms          = findViewById(R.id.meaningAdapterSynonims);
         addMeaningAntonyms          = findViewById(R.id.addMeaningAntonyms);
         addMeaningCancelButton      = findViewById(R.id.addMeaningCancelButton);
         addMeaningSaveButton        = findViewById(R.id.addMeaningSaveButton);
@@ -108,6 +108,11 @@ public class CreateWordActivity extends AppCompatActivity {
         meaningListFrame.setVisibility(View.VISIBLE);
         addMeaningFrame.setVisibility(View.INVISIBLE);
     }
+
+    public void updateMeaningsList(){
+
+    }
+
 
 
 
