@@ -33,7 +33,7 @@ public class MeaningsListAdapter extends ArrayAdapter<MeaningModel> {
         MeaningModel currentMeaningModel = (MeaningModel)getItem(position);
 
         TextView meaning = listItemView.findViewById(R.id.meaningAdapterMeaning);
-        meaning.setText(currentMeaningModel.getMeaningEntity().getDefinition());
+        meaning.setText(currentMeaningModel.getMeaningEntity().getMeaning());
 
         TextView example = listItemView.findViewById(R.id.meaningAdapterExample);
         example.setText(currentMeaningModel.getMeaningEntity().getExample());
@@ -45,8 +45,10 @@ public class MeaningsListAdapter extends ArrayAdapter<MeaningModel> {
         antonyms.setText(currentMeaningModel.getMeaningEntity().getAntonyms());
 
         Button modify = listItemView.findViewById(R.id.meaningModifyButton);
-        Button delete = listItemView.findViewById(R.id.meaningDeleteButton);
+        modify.setTag(currentMeaningModel);
 
+        Button delete = listItemView.findViewById(R.id.meaningDeleteButton);
+        delete.setTag(currentMeaningModel);
 
         listItemView.setTag(currentMeaningModel);
 

@@ -31,7 +31,7 @@ public class WordModel {
 
     public WordModel(WordsRoomDatabase db){
         this.meaningsList = new ArrayList<>();
-        this.db = db;
+        this.db           = db;
     }
 
     public WordEntity getWordEntity(){
@@ -76,10 +76,20 @@ public class WordModel {
         this.statsModel = statsModel;
     }
 
-    public void addMeaning(String meaning, String example, String synonyms, String antonyms){
-        MeaningEntity meaningEntity = new MeaningEntity(this.wordEntity.getId(), meaning, example, synonyms, antonyms);
-        MeaningModel meaningModel   = new MeaningModel(meaningEntity);
+    public void addMeaning(MeaningModel meaningModel){
+
+        if(meaningsList.contains(meaningModel)){
+            meaningsList.remove(meaningModel);
+        }
+
         meaningsList.add(meaningModel);
+    }
+
+    public void removeMeaning(MeaningModel meaningModel){
+
+        if(meaningsList.contains(meaningModel)){
+            meaningsList.remove(meaningModel);
+        }
     }
 
     public void saveWord(){

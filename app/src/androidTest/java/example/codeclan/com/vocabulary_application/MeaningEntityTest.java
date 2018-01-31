@@ -52,7 +52,7 @@ public class MeaningEntityTest {
 
         assertEquals(1, meaningDao.getMeaningsByWordId(word_id).size());
         assertEquals("to stop being involved in an activity, event, or situation",
-                meaningDao.getMeaningByMeaningId(meaning_id).getDefinition());
+                meaningDao.getMeaningByMeaningId(meaning_id).getMeaning());
 
 
          meaning = new MeaningEntity(word_id, "if a train pulls out, it leaves a station",
@@ -81,11 +81,11 @@ public class MeaningEntityTest {
         Long meaning_id = meaningDao.insertMeaning(meaning);
 
         meaning = meaningDao.getMeaningByMeaningId(meaning_id);
-        meaning.setDefinition("if a train pulls out, it leaves a station");
+        meaning.setMeaning("if a train pulls out, it leaves a station");
         meaningDao.updateMeaning(meaning);
 
         assertEquals("if a train pulls out, it leaves a station",
-                meaningDao.getMeaningByMeaningId(meaning_id).getDefinition());
+                meaningDao.getMeaningByMeaningId(meaning_id).getMeaning());
 
     }
 

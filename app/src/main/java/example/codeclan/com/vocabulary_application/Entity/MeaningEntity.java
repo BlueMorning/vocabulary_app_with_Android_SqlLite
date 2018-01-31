@@ -22,7 +22,7 @@ public class MeaningEntity {
     private Long id;
 
     @ColumnInfo(name="mig_definition")
-    private String definition;
+    private String meaning;
 
     @ColumnInfo(name = "mig_example")
     private String example;
@@ -36,9 +36,9 @@ public class MeaningEntity {
     @ColumnInfo(name= "mig_wrd_id")
     private Long wordId;
 
-    public MeaningEntity(Long id, Long wordId, String definition, String example, String synonyms, String antonyms) {
+    public MeaningEntity(Long id, Long wordId, String meaning, String example, String synonyms, String antonyms) {
         this.id         = id;
-        this.definition = definition;
+        this.meaning = meaning;
         this.example    = example;
         this.synonyms   = synonyms;
         this.antonyms   = antonyms;
@@ -46,9 +46,9 @@ public class MeaningEntity {
     }
 
     @Ignore
-    public MeaningEntity(Long wordId, String definition, String example, String synonyms, String antonyms) {
+    public MeaningEntity(Long wordId, String meaning, String example, String synonyms, String antonyms) {
         this.wordId     = wordId;
-        this.definition = definition;
+        this.meaning = meaning;
         this.example    = example;
         this.synonyms   = synonyms;
         this.antonyms   = antonyms;
@@ -65,12 +65,12 @@ public class MeaningEntity {
         this.id = id;
     }
 
-    public String getDefinition() {
-        return definition;
+    public String getMeaning() {
+        return meaning;
     }
 
-    public void setDefinition(String definition) {
-        this.definition = definition;
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
     }
 
     public String getExample() {

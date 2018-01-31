@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
+import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
+import example.codeclan.com.vocabulary_application.Model.MeaningModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumWordTypeAdapter;
@@ -35,6 +37,7 @@ public class CreateWordActivity extends AppCompatActivity {
 
     private WordsRoomDatabase database;
     private WordModel wordModel;
+    private MeaningModel currentMeaningModel;
 
     private EnumWordTypeAdapter enumWordTypeAdapter;
 
@@ -111,6 +114,8 @@ public class CreateWordActivity extends AppCompatActivity {
 
     public void onClickCreateWordAddMeaningButton(View button){
         this.resetMeaningFields();
+        currentMeaningModel = new MeaningModel(new MeaningEntity(null, "", "", "", ""));
+        addMeaningSaveButton.setTag(currentMeaningModel);
         meaningListFrame.setVisibility(View.INVISIBLE);
         addMeaningFrame.setVisibility(View.VISIBLE);
     }
@@ -134,10 +139,13 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void onClickAddMeaningSaveButton(View button){
-        wordModel.addMeaning(addMeaningMeaning.getText().toString(),
-                             addMeaningExample.getText().toString(),
-                             addMeaningSynonyms.getText().toString(),
-                             addMeaningAntonyms.getText().toString());
+
+        currentMeaningModel.getMeaningEntity().setMeaning(addMeaningMeaning.getText().toString());
+        currentMeaningModel.getMeaningEntity().setExample(addMeaningExample.getText().toString());
+        currentMeaningModel.getMeaningEntity().setSynonyms(addMeaningSynonyms.getText().toString());
+        currentMeaningModel.getMeaningEntity().setAntonyms(addMeaningAntonyms.getText().toString());
+
+        wordModel.addMeaning(currentMeaningModel);
 
         updateMeaningsList();
 
@@ -156,13 +164,38 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void resetMeaningFields(){
+
+        currentMeaningModel = null;
+
         addMeaningMeaning.setText("");
         addMeaningExample.setText("");
         addMeaningSynonyms.setText("");
         addMeaningAntonyms.setText("");
     }
 
+    public void initializeMeaningsFiels(){
+        addMeaningMeaning.setText(currentMeaningModel.getMeaningEntity().getMeaning());
+        addMeaningExample.setText(currentMeaningModel.getMeaningEntity().getExample());
+        addMeaningSynonyms.setText(currentMeaningModel.getMeaningEntity().getSynonyms());
+        addMeaningAntonyms.setText(currentMeaningModel.getMeaningEntity().getAntonyms());
+    }
 
+    public void onClickMeaningModifyButton(View button){
+
+        currentMeaningModel = ((MeaningModel)button.getTag());
+
+        initializeMeaningsFiels();
+
+        meaningListFrame.setVisibility(View.INVISIBLE);
+        addMeaningFrame.setVisibility(View.VISIBLE);
+    }
+
+    public void onClickMeaningDeleteButton(View button){
+
+        currentMeaningModel = ((MeaningModel)button.getTag());
+        this.wordModel.removeMeaning(currentMeaningModel);
+        updateMeaningsList();
+    }
 
 
 }
