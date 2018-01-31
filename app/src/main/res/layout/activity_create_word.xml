@@ -98,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
+                android:onClick="onclickCreateWordCancelButton"
                 android:text="@string/cancel"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"

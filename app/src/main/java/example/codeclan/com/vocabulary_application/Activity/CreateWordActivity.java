@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -82,7 +83,8 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void onclickCreateWordCancelButton(View button){
-
+        Intent intent = new Intent(this, WordsListActivity.class);
+        startActivity(intent);
     }
 
     public void onClickAddMeaningSaveButton(View button){
