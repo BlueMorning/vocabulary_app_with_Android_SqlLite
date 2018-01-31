@@ -15,7 +15,7 @@ import example.codeclan.com.vocabulary_application.R;
  * Created by horizon on 29/01/2018.
  */
 
-public class WordModel implements Serializable {
+public class WordModel {
 
     private WordEntity  wordEntity;
     private StatsModel  statsModel;

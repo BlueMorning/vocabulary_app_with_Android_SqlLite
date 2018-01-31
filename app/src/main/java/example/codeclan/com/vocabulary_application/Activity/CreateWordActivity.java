@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
+import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
@@ -80,10 +81,16 @@ public class CreateWordActivity extends AppCompatActivity {
         addMeaningFrame.setVisibility(View.INVISIBLE);
 
 
-        wordModel = new WordModel(database);
-        wordModel.createWordEntity(wordSpellingTextView.getText().toString(),
-                                  ((EnumWordType)listWordTypesSpinner.getSelectedItem()));
+        WordEntity wordEntity = (WordEntity)this.getIntent().getSerializableExtra("wordEntity");
 
+        if(wordEntity == null){
+            wordModel = new WordModel(database);
+            wordModel.createWordEntity(wordSpellingTextView.getText().toString(),
+                                       EnumWordType.ALL);
+        }
+        else{
+            wordModel = new WordModel(wordEntity, database);
+        }
     }
 
     public void onClickCreateWordAddMeaningButton(View button){

@@ -6,11 +6,13 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 
 @Entity(tableName = "words")
-public class WordEntity {
+public class WordEntity implements Serializable {
 
 
     // Properties
