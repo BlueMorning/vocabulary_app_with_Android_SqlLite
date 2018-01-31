@@ -91,6 +91,22 @@ public class CreateWordActivity extends AppCompatActivity {
         else{
             wordModel = new WordModel(wordEntity, database);
         }
+
+        initializeWordFiels();
+    }
+
+    public void initializeWordFiels(){
+        wordSpellingTextView.setText(wordModel.getWordEntity().getSpelling());
+
+        for(int spinnerItemIndex = 0; spinnerItemIndex < listWordTypesSpinner.getCount(); spinnerItemIndex++){
+            if((EnumWordType)(listWordTypesSpinner.getItemAtPosition(spinnerItemIndex)) == ((EnumWordType)wordModel.getWordEntity().getType())){
+                listWordTypesSpinner.setSelection(spinnerItemIndex);
+                break;
+            }
+        }
+
+        wordModel.initializeMeanings();
+        updateMeaningsList();
     }
 
     public void onClickCreateWordAddMeaningButton(View button){

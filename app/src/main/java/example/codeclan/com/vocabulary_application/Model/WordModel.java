@@ -2,6 +2,7 @@ package example.codeclan.com.vocabulary_application.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
@@ -109,5 +110,17 @@ public class WordModel {
         if(this.wordEntity.getId() != null) {
             this.statsModel = new StatsModel(this.db.statsDao().getStatsByWordId(this.wordEntity.getId()));
         }
+    }
+
+    public ArrayList<MeaningModel> initializeMeanings() {
+        if(this.wordEntity.getId() != null) {
+            this.meaningsList = new ArrayList<>(this.db.meaningDao().getMeaningsByWordId(this.wordEntity.getId()).stream().map(
+                                    meaningEntity -> {
+                                        return new MeaningModel(meaningEntity);
+                                    }
+                                ).collect(Collectors.toList()));
+        }
+
+        return this.meaningsList;
     }
 }

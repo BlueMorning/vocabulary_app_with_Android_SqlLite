@@ -49,7 +49,6 @@ public class WordsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_words_list);
 
         database                = WordsRoomDatabase.getDatabase(this);
-        DatabaseRunner.fuelDatabase(this);
 
         wordModels              = new ArrayList<>();
 
