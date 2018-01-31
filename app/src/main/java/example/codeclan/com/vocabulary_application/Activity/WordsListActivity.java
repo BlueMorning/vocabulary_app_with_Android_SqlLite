@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -58,7 +59,6 @@ public class WordsListActivity extends AppCompatActivity {
         searchResultCount       = findViewById(R.id.searchResultCount);
         createWordButton        = findViewById(R.id.createWordButton);
         wordsList               = findViewById(R.id.wordsList);
-
 
         wordsSearchBar.addTextChangedListener(new TextWatcher()
         {
@@ -149,5 +149,9 @@ public class WordsListActivity extends AppCompatActivity {
         searchResultCount.setText(String.format("Words : %s (Max. 100)", wordModels.size()));
     }
 
+    public void onClickCreateWord(View button){
+        Intent intent = new Intent(this, CreateWordActivity.class);
+        startActivity(intent);
+    }
 
 }
