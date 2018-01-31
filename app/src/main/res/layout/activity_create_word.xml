@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:text="Type"
+        android:text="@string/type"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
     <Spinner
         android:id="@+id/createWordTypesList"
         android:layout_width="250dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Spelling"
+        android:text="@string/spelling"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,40 +55,39 @@
     <FrameLayout
         android:id="@+id/meaningListFrame"
         android:layout_width="0dp"
-        android:layout_height="404dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="19dp"
-        android:visibility="gone"
+        android:layout_marginTop="24dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createWordAddMeaning"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/createWordAddMeaning"
+                android:id="@+id/createWordAddMeaningButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Add Meaning"
+                android:text="@string/add_meaning"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createWordTypesList" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="Meanings list"
+                android:layout_marginTop="16dp"
+                android:text="@string/meanings_list"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -97,13 +96,12 @@
                 android:id="@+id/createWordCancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createWordMeaningsList" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/createWordSaveButton"
@@ -111,19 +109,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="Save"
+                android:text="@string/save"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createWordMeaningsList" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ListView
                 android:id="@+id/createWordMeaningsList"
-                android:layout_width="wrap_content"
-                android:layout_height="286dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/createWordAddMeaning"
-                tools:layout_editor_absoluteX="0dp" />
+                app:layout_constraintBottom_toTopOf="@+id/createWordCancelButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
         </android.support.constraint.ConstraintLayout>
 
 
@@ -132,12 +134,12 @@
     <FrameLayout
         android:id="@+id/addMeaningFrame"
         android:layout_width="0dp"
-        android:layout_height="386dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Cancel meaning"
+                android:text="@string/cancel_meaning"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -164,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Save meaning"
+                android:text="@string/save_meaning"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -173,11 +175,14 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Meaning"
-                android:textSize="14sp"
+                android:text="@string/meaning"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="7dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/addMeaningMeaning"
@@ -185,6 +190,7 @@
                 android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:textSize="14sp"
@@ -196,11 +202,12 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Example"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningMeaning"
-                tools:layout_editor_absoluteX="8dp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/example"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addMeaningMeaning" />
 
             <EditText
                 android:id="@+id/addMeaningExample"
@@ -208,6 +215,7 @@
                 android:layout_height="67dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:textSize="14sp"
@@ -220,11 +228,12 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Synonyms"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/synonyms"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningExample"
-                tools:layout_editor_absoluteX="8dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addMeaningExample" />
 
             <EditText
                 android:id="@+id/addMeaningSynonyms"
@@ -243,10 +252,11 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Antonyms"
-                app:layout_constraintTop_toBottomOf="@+id/addMeaningSynonyms"
-                tools:layout_editor_absoluteX="8dp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/antonyms"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addMeaningSynonyms" />
 
             <EditText
                 android:id="@+id/addMeaningAntonyms"

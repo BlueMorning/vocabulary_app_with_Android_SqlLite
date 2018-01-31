@@ -2,4 +2,16 @@
     <string name="app_name">Are you MegaMind ?</string>
     <string name="nav_vocab">Vocab</string>
     <string name="nav_training">Training</string>
+    <string name="type">Type</string>
+    <string name="spelling">Spelling</string>
+    <string name="meaning">Meaning</string>
+    <string name="save_meaning">Save meaning</string>
+    <string name="add_meaning">Add Meaning</string>
+    <string name="cancel_meaning">Cancel meaning</string>
+    <string name="meanings_list">Meanings list</string>
+    <string name="save">Save</string>
+    <string name="example">Example</string>
+    <string name="synonyms">Synonyms</string>
+    <string name="cancel">Cancel</string>
+    <string name="antonyms">Antonyms</string>
 </resources>

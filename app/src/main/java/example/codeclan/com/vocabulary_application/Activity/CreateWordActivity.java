@@ -54,11 +54,12 @@ public class CreateWordActivity extends AppCompatActivity {
 
         wordSpellingTextView = findViewById(R.id.createWordSpelling);
         listWordTypesSpinner = findViewById(R.id.createWordTypesList);
-        addMeaningButton     = findViewById(R.id.createWordAddMeaning);
+        addMeaningButton     = findViewById(R.id.createWordAddMeaningButton);
         wordMeaningsListView = findViewById(R.id.createWordMeaningsList);
         saveWordButton       = findViewById(R.id.createWordSaveButton);
         cancelWordButton     = findViewById(R.id.createWordCancelButton);
         meaningListFrame     = findViewById(R.id.meaningListFrame);
+        //meaningListFrame.setVisibility(View.VISIBLE);
 
         enumWordTypeAdapter = new EnumWordTypeAdapter(this, new ArrayList<>(Arrays.asList(EnumWordType.values())));
         listWordTypesSpinner.setAdapter(enumWordTypeAdapter);
@@ -71,6 +72,8 @@ public class CreateWordActivity extends AppCompatActivity {
         addMeaningCancelButton      = findViewById(R.id.addMeaningCancelButton);
         addMeaningSaveButton        = findViewById(R.id.addMeaningSaveButton);
         addMeaningFrame             = findViewById(R.id.addMeaningFrame);
+
+        //addMeaningMeaning.setVisibility(View.INVISIBLE);
 
     }
 
