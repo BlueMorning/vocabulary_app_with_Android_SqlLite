@@ -18,6 +18,7 @@ public class DatabaseRunner {
         WordsRoomDatabase db = WordsRoomDatabase.getDatabase(context);
 
         db.statsDao().deleteAllStats();
+        db.meaningDao().deleteAllMeanings();
         db.wordDao().deleteAllWords();
         String[] spelling = {
                 "to pull out",

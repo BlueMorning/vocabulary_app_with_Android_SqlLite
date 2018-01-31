@@ -34,4 +34,6 @@ public interface MeaningDao {
     @Query("DELETE FROM meanings WHERE mig_id = :id")
     public void deleteMeaningByMeaningId(Long id);
 
+    @Query("DELETE FROM meanings")
+    public void deleteAllMeanings();
 }

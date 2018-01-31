@@ -12,6 +12,10 @@ public class StatsModel {
         this.statsEntity = statsEntity;
     }
 
+    public StatsModel(Long wordId){
+        this.statsEntity = new StatsEntity(wordId, 0, EnumMasteryLevel.NEW, 0 ,0, 0, 0, 0, 0);
+    }
+
     public StatsEntity getStatsEntity() {
         return statsEntity;
     }
