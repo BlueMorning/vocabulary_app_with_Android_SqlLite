@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ public class CreateWordActivity extends AppCompatActivity {
     private ListView wordMeaningsListView;
     private Button saveWordButton;
     private Button cancelWordButton;
+    private FrameLayout meaningListFrame;
+
 
     private WordsRoomDatabase database;
 
@@ -32,6 +35,7 @@ public class CreateWordActivity extends AppCompatActivity {
 
 
     /* Add/Modify a meaning for a word */
+    private FrameLayout addMeaningFrame;
     private TextView addMeaningMeaning;
     private TextView addMeaningExample;
     private TextView addMeaningSynonyms;
@@ -54,7 +58,7 @@ public class CreateWordActivity extends AppCompatActivity {
         wordMeaningsListView = findViewById(R.id.createWordMeaningsList);
         saveWordButton       = findViewById(R.id.createWordSaveButton);
         cancelWordButton     = findViewById(R.id.createWordCancelButton);
-
+        meaningListFrame     = findViewById(R.id.meaningListFrame);
 
         enumWordTypeAdapter = new EnumWordTypeAdapter(this, new ArrayList<>(Arrays.asList(EnumWordType.values())));
         listWordTypesSpinner.setAdapter(enumWordTypeAdapter);
@@ -66,6 +70,7 @@ public class CreateWordActivity extends AppCompatActivity {
         addMeaningAntonyms          = findViewById(R.id.addMeaningAntonyms);
         addMeaningCancelButton      = findViewById(R.id.addMeaningCancelButton);
         addMeaningSaveButton        = findViewById(R.id.addMeaningSaveButton);
+        addMeaningFrame             = findViewById(R.id.addMeaningFrame);
 
     }
 
