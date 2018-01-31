@@ -18,6 +18,7 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumWordTypeAdapter;
+import example.codeclan.com.vocabulary_application.ViewAdapter.MeaningsListAdapter;
 
 public class CreateWordActivity extends AppCompatActivity {
 
@@ -69,8 +70,8 @@ public class CreateWordActivity extends AppCompatActivity {
 
         /* Add/Modify a meaning for a word */
         addMeaningMeaning           = findViewById(R.id.meaningAdapterMeaning);
-        addMeaningExample           = findViewById(R.id.meaningAdapterExapmle);
-        addMeaningSynonyms          = findViewById(R.id.meaningAdapterSynonims);
+        addMeaningExample           = findViewById(R.id.meaningAdapterExample);
+        addMeaningSynonyms          = findViewById(R.id.meaningAdapterSynonyms);
         addMeaningAntonyms          = findViewById(R.id.addMeaningAntonyms);
         addMeaningCancelButton      = findViewById(R.id.addMeaningCancelButton);
         addMeaningSaveButton        = findViewById(R.id.addMeaningSaveButton);
@@ -80,6 +81,8 @@ public class CreateWordActivity extends AppCompatActivity {
 
 
         wordModel = new WordModel();
+        wordModel.createWordEntity(wordSpellingTextView.getText().toString(),
+                                  ((EnumWordType)listWordTypesSpinner.getSelectedItem()));
 
     }
 
@@ -102,6 +105,11 @@ public class CreateWordActivity extends AppCompatActivity {
                              addMeaningExample.getText().toString(),
                              addMeaningSynonyms.getText().toString(),
                              addMeaningAntonyms.getText().toString());
+
+        updateMeaningsList();
+
+        meaningListFrame.setVisibility(View.VISIBLE);
+        addMeaningFrame.setVisibility(View.INVISIBLE);
     }
 
     public void onClickAddMeaningCancelButton(View button){
@@ -110,7 +118,8 @@ public class CreateWordActivity extends AppCompatActivity {
     }
 
     public void updateMeaningsList(){
-
+        MeaningsListAdapter meaningsListAdapter = new MeaningsListAdapter(this, this.wordModel.getMeaningsList());
+        wordMeaningsListView.setAdapter(meaningsListAdapter);
     }
 
 

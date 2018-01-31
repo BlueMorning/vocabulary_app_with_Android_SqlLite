@@ -169,6 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
+                android:onClick="onClickAddMeaningSaveButton"
                 android:text="@string/save_meaning"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -213,7 +214,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/meaningAdapterMeaning" />
 
             <EditText
-                android:id="@+id/meaningAdapterExapmle"
+                android:id="@+id/meaningAdapterExample"
                 android:layout_width="0dp"
                 android:layout_height="67dp"
                 android:layout_marginEnd="8dp"
@@ -236,10 +237,10 @@
                 android:text="@string/synonyms"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterExapmle" />
+                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterExample" />
 
             <EditText
-                android:id="@+id/meaningAdapterSynonims"
+                android:id="@+id/meaningAdapterSynonyms"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -259,7 +260,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/antonyms"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterSynonims" />
+                app:layout_constraintTop_toBottomOf="@+id/meaningAdapterSynonyms" />
 
             <EditText
                 android:id="@+id/addMeaningAntonyms"

@@ -21,12 +21,11 @@ public class WordModel {
     private ArrayList<MeaningModel> meaningsList;
 
     public WordModel(WordEntity wordEntity){
-
         this.wordEntity = wordEntity;
     }
 
     public WordModel(){
-
+        this.meaningsList = new ArrayList<>();
     }
 
     public WordEntity getWordEntity(){
@@ -36,6 +35,11 @@ public class WordModel {
     public StatsModel getStatsModel(){
 
         return this.statsModel;
+    }
+
+    public ArrayList<MeaningModel> getMeaningsList(){
+
+        return this.meaningsList;
     }
 
     public int getMasteryLevelDrawableId(){

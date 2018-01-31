@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import example.codeclan.com.vocabulary_application.Model.MeaningModel;
-import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 
 /**
@@ -29,24 +26,24 @@ public class MeaningsListAdapter extends ArrayAdapter<MeaningModel> {
     public View getView(int position, View listItemView, ViewGroup parent) {
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.word_model_adapter, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.meaning_model_adapter, parent, false);
         }
 
-        WordModel currentWordModel = (WordModel)getItem(position);
+        MeaningModel currentMeaningModel = (MeaningModel)getItem(position);
 
-        TextView wordSpelling = listItemView.findViewById(R.id.listWordsWordSpelling);
-        wordSpelling.setText(currentWordModel.getWordEntity().getSpelling());
+        TextView meaning = listItemView.findViewById(R.id.meaningAdapterMeaning);
+        meaning.setText(currentMeaningModel.getMeaningEntity().getDefinition());
 
-        TextView wordType = listItemView.findViewById(R.id.listWordsWordType);
-        wordType.setText(currentWordModel.getWordEntity().getType().getShortLabel());
+        TextView example = listItemView.findViewById(R.id.meaningAdapterExample);
+        example.setText(currentMeaningModel.getMeaningEntity().getExample());
 
-        ImageView imageMasteryLevel = listItemView.findViewById(R.id.imageMasteryLevel);
-        imageMasteryLevel.setImageResource(currentWordModel.getMasteryLevelDrawableId());
+        TextView synomyms = listItemView.findViewById(R.id.meaningAdapterSynonyms);
+        synomyms.setText(currentMeaningModel.getMeaningEntity().getSynonyms());
 
-        Button buttonModifyWord = listItemView.findViewById(R.id.listWordsButtonModify);
-        buttonModifyWord.setTag(currentWordModel);
+        TextView antonyms = listItemView.findViewById(R.id.meaningAdapterAntonyms);
+        antonyms.setText(currentMeaningModel.getMeaningEntity().getAntonyms());
 
-        listItemView.setTag(currentWordModel);
+        listItemView.setTag(currentMeaningModel);
 
         return listItemView;
 
