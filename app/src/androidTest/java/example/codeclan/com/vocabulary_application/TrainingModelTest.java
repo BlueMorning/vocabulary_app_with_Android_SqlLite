@@ -66,6 +66,14 @@ public class TrainingModelTest {
         assertEquals(1, trainingModel.getNumber());
     }
 
+    @Test
+    public void hasTotalWords(){
+        assertEquals(5, trainingModel.getTotalWords());
+        assertEquals(5, trainingModel.getwordsModelList().size());
+    }
+
+
+
 
 
 }

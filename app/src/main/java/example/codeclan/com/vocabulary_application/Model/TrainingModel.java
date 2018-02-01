@@ -33,11 +33,19 @@ public class TrainingModel  {
         return this.getTrainingEntity().getNumber();
     }
 
+    public ArrayList<WordModel> getwordsModelList(){
+        return this.wordsModelList;
+    }
+
     public void initializeWordsList() {
         this.wordsModelList = new ArrayList<>(
                     db.trainingDao().getWordsByTrainingId(this.getTrainingEntity().getId())
                         .stream().map(wordEntity -> {
                                         return new WordModel(wordEntity, db);
                 }).collect(Collectors.toList()));
+    }
+
+    public int getTotalWords() {
+        return this.trainingEntity.getTotalWords();
     }
 }
