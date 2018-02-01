@@ -58,10 +58,10 @@ public class StatsModel {
         return this.getStatsEntity().getTotalCorrectAnswers();
     }
 
-    public int getTotalCorrectAnswersPercentage(){
+    public double getTotalCorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
-            return getTotalCorrectAnswers() / getTotalAnswers();
+            return new Double(getTotalCorrectAnswers()) / getTotalAnswers();
         }
         else{
             return 0;
@@ -72,10 +72,10 @@ public class StatsModel {
         return this.getStatsEntity().getTotalIncorrectAnswers();
     }
 
-    public int getTotalIncorrectAnswersPercentage(){
+    public double getTotalIncorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
-            return getTotalIncorrectAnswers() / getTotalAnswers();
+            return new Double(getTotalIncorrectAnswers()) / getTotalAnswers();
         }
         else{
             return 0;
@@ -91,7 +91,7 @@ public class StatsModel {
         return this.getStatsEntity().getLastTrainingTotalCorrectAnswers();
     }
 
-    public int getLastTrainingTotalCorrectAnswersPercentage(){
+    public double getLastTrainingTotalCorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
             return getLastTrainingTotalCorrectAnswers() / getLastTrainingTotalAnswers();
@@ -105,7 +105,7 @@ public class StatsModel {
         return this.getStatsEntity().getLastTrainingTotalIncorrectAnswers();
     }
 
-    public int getLastTrainingTotalIncorrectAnswersPercentage(){
+    public double getLastTrainingTotalIncorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
             return getLastTrainingTotalIncorrectAnswers() / getLastTrainingTotalAnswers();

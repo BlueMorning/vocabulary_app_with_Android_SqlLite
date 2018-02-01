@@ -67,6 +67,9 @@ public class StatsModelTest {
         assertEquals(15, statsModel.getTotalCorrectAnswers());
     }
 
-
+    @Test
+    public void hasgetTotalCorrectAnswersPercentage(){
+        assertEquals(0.75, statsModel.getTotalCorrectAnswersPercentage(), 0);
+    }
 
 }
