@@ -41,13 +41,13 @@ public class TrainingsListAdapter extends ArrayAdapter<TrainingModel> {
 
         TextView    trainingsListNumber         = listItemView.findViewById(R.id.trainingsListNumber);
         TextView    trainingsListTotalWords     = listItemView.findViewById(R.id.trainingsListtotalWords);
-        TextView    trainingsListNextBestDate   = listItemView.findViewById(R.id.trainingsListNextBestDate);
+        TextView    trainingsListBestNextDate   = listItemView.findViewById(R.id.trainingsListNextBestDate);
         ImageView   trainingsListImageTiming    = listItemView.findViewById(R.id.trainingsListImageTiming);
         TextView    trainingsListStep           = listItemView.findViewById(R.id.trainingsListStep);
 
         trainingsListNumber.setText(currentTrainingModel.getNumber());
         trainingsListTotalWords.setText(currentTrainingModel.getTotalWords());
-
+        trainingsListBestNextDate.setText(currentTrainingModel.getBestNextDateLabel());
 
         listItemView.setTag(currentTrainingModel);
 

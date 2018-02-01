@@ -9,6 +9,8 @@ import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+
 
 public class TrainingModel  {
 
@@ -47,5 +49,9 @@ public class TrainingModel  {
 
     public int getTotalWords() {
         return this.trainingEntity.getTotalWords();
+    }
+
+    public String getBestNextDateLabel() {
+        return this.trainingEntity.getNextBestTraining().format(ISO_LOCAL_DATE);
     }
 }

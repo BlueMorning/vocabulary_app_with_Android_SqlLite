@@ -22,6 +22,7 @@ import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStat
 import example.codeclan.com.vocabulary_application.Model.StatsModel;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -70,6 +71,11 @@ public class TrainingModelTest {
     public void hasTotalWords(){
         assertEquals(5, trainingModel.getTotalWords());
         assertEquals(5, trainingModel.getwordsModelList().size());
+    }
+
+    @Test
+    public void hasBestNextDate(){
+        assertEquals(LocalDate.now().format(ISO_LOCAL_DATE), trainingModel.getBestNextDateLabel());
     }
 
 
