@@ -7,20 +7,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingPriority;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingWordCount;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
 import example.codeclan.com.vocabulary_application.R;
+import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingPriorityAdapter;
+import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingStatusAdapter;
+import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingsWordsCountAdapter;
 import example.codeclan.com.vocabulary_application.ViewAdapter.TrainingListAdapter;
 
 public class TrainingListActivity extends AppCompatActivity {
@@ -29,12 +36,15 @@ public class TrainingListActivity extends AppCompatActivity {
     private TextView    searchTrainingsCount;
     private Spinner     trainingPriorities;
     private Spinner     trainingWordsCount;
-    private Spinner     trainingWordsStatus;
+    private Spinner trainingStatus;
     private Button      createTrainingButton;
 
     private WordsRoomDatabase db;
     private ArrayList<TrainingModel> trainingModels;
     private TrainingListAdapter trainingListAdapter;
+    private EnumTrainingPriorityAdapter enumTrainingPriorityAdapter;
+    private EnumTrainingStatusAdapter enumTrainingStatusAdapter;
+    private EnumTrainingsWordsCountAdapter enumTrainingsWordsCountAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +81,62 @@ public class TrainingListActivity extends AppCompatActivity {
         trainingsList                       = findViewById(R.id.trainingsList);
         searchTrainingsCount                = findViewById(R.id.searchTrainingsCount);
         createTrainingButton                = findViewById(R.id.createTrainingButton);
-        trainingPriorities                  = findViewById(R.id.trainingPriorities);
-        trainingWordsCount                  = findViewById(R.id.trainingWordsCount);
-        trainingWordsStatus                 = findViewById(R.id.trainingWordsStatus);
+        trainingPriorities                  = findViewById(R.id.trainingPrioritiesList);
+        trainingWordsCount                  = findViewById(R.id.trainingWordsCountList);
+        trainingStatus                      = findViewById(R.id.trainingStatusList);
+
+        enumTrainingPriorityAdapter = new EnumTrainingPriorityAdapter(this, new ArrayList<>(Arrays.asList(EnumTrainingPriority.values())));
+        trainingPriorities.setAdapter(enumTrainingPriorityAdapter);
+
+
+        trainingPriorities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searchTrainings();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        enumTrainingStatusAdapter = new EnumTrainingStatusAdapter(this, new ArrayList<>(Arrays.asList(EnumTrainingStatus.values())));
+        trainingStatus.setAdapter(enumTrainingStatusAdapter);
+
+
+        trainingStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searchTrainings();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        enumTrainingsWordsCountAdapter = new EnumTrainingsWordsCountAdapter(this, new ArrayList<>(Arrays.asList(EnumTrainingWordCount.values())));
+        trainingWordsCount.setAdapter(enumTrainingsWordsCountAdapter);
+
+
+        trainingWordsCount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                searchTrainings();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
     }
 

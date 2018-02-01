@@ -54,7 +54,7 @@ public class WordsListActivity extends AppCompatActivity {
         wordModels              = new ArrayList<>();
 
         wordsSearchBar          = findViewById(R.id.wordsSearchBar);
-        wordTypes               = findViewById(R.id.trainingPriorities);
+        wordTypes               = findViewById(R.id.trainingPrioritiesList);
         wordsMasteryLevels      = findViewById(R.id.wordsConfidenceLevels);
         searchResultCount       = findViewById(R.id.searchTrainingsCount);
         createWordButton        = findViewById(R.id.createTrainingButton);

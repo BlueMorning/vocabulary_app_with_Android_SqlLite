@@ -6,20 +6,26 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum EnumTrainingWordCount {
 
-    ALL(0),
-    FIVE(5),
-    TEN(10),
-    FIFTEEN(15),
-    TWENTY(20);
+    ALL(0, "All"),
+    FIVE(5, "5"),
+    TEN(10, "10"),
+    FIFTEEN(15, "15"),
+    TWENTY(20, "20");
 
     int wordCount;
+    String wordCountLabel;
 
-    EnumTrainingWordCount(int wordCount){
-        this.wordCount = wordCount;
+    EnumTrainingWordCount(int wordCount, String label){
+        this.wordCount      = wordCount;
+        this.wordCountLabel = label;
     }
 
-    int getWordCount(){
+    public int getWordCount(){
         return this.wordCount;
+    }
+
+    public String getWordCountLabel(){
+        return this.wordCountLabel;
     }
 
 
