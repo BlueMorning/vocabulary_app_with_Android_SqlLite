@@ -115,6 +115,11 @@ public class StatsModelTest {
         assertEquals("15 / 20", statsModel.getTotalCorrectAnswersLabel());
     }
 
+    @Test
+    public void hasTotalIncorrectAnswersLabel(){
+        assertEquals("5 / 20", statsModel.getTotalIncorrectAnswersLabel());
+    }
+
 
 
 }
