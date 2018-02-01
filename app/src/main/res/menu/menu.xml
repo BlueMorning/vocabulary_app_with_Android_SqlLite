@@ -4,15 +4,12 @@
     <item
         android:id="@+id/nav_vocab"
         android:enabled="true"
-        android:icon="@drawable/training"
         android:title="@string/nav_vocab"
         android:visible="true"
         app:showAsAction="always" />
     <item
         android:id="@+id/nav_training"
-        android:checkable="false"
         android:enabled="true"
-        android:icon="@drawable/training"
         android:title="@string/nav_training"
         android:visible="true"
         app:showAsAction="always" />
