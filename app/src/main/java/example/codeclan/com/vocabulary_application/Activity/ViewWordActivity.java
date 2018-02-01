@@ -31,6 +31,7 @@ public class ViewWordActivity extends AppCompatActivity {
     private WordModel wordModel;
     private Button viewWordDeleteButton;
 
+
     // Tab Item Stats
     private TextView wordStatsWordSpelling;
     private TextView wordStatsLatestTestWrongAnswersPercentage;
@@ -49,6 +50,8 @@ public class ViewWordActivity extends AppCompatActivity {
     private TextView wordStatsTrainingStep;
 
     private ImageView imageMasteryLevel;
+
+    private Button wordStatsResetStats;
 
 
     @Override
@@ -90,7 +93,7 @@ public class ViewWordActivity extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("Delete a Word")
-                .setMessage(String.format("Are you sure to delete %s ?", wordModel.getWordEntity().getSpelling().toUpperCase()))
+                .setMessage(String.format("Do you really want to delete %s ?", wordModel.getWordEntity().getSpelling().toUpperCase()))
                 .setIcon(R.drawable.delete)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -127,6 +130,7 @@ public class ViewWordActivity extends AppCompatActivity {
 
     public void initializeWordStatsViewItem(){
 
+        wordStatsResetStats                         = findViewById(R.id.wordStatsResetStats);
         wordStatsWordSpelling                       = findViewById(R.id.wordStatsWordSpelling);
 
         wordStatsLatestTestWrongAnswersPercentage   = findViewById(R.id.wordStatsLatestTestWrongAnswersPercentage);
@@ -145,6 +149,8 @@ public class ViewWordActivity extends AppCompatActivity {
         wordStatsTrainingStep                       = findViewById(R.id.wordStatsTrainingStep);
 
         imageMasteryLevel                           = findViewById(R.id.imageMasteryLevel);
+
+        wordStatsResetStats.setTag(this.wordModel);
 
         wordStatsWordSpelling.setText(StringUtils.capitalize(wordModel.getWordEntity().getSpelling().toUpperCase()));
 
@@ -180,5 +186,25 @@ public class ViewWordActivity extends AppCompatActivity {
 
         imageMasteryLevel.setImageResource(
                 wordModel.getStatsModel().getMasteryLevelDrawableId());
+    }
+
+    public void onClickResetWordStats(View button){
+
+        WordModel wordModel = ((WordModel)(button).getTag());
+
+        new AlertDialog.Builder(this)
+                .setTitle("Reset Stats")
+                .setMessage(String.format("Do you really want to reset the stats of %s ?", wordModel.getWordEntity().getSpelling().toUpperCase()))
+                .setIcon(R.drawable.delete)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        resetStats(button);
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    public void resetStats(View button){
+        wordModel.getStatsModel().resetStats();
+        initializeWordStatsViewItem();
     }
 }

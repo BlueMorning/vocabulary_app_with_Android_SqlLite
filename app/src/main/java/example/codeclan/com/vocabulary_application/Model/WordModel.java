@@ -27,7 +27,7 @@ public class WordModel {
     public WordModel(WordEntity wordEntity, WordsRoomDatabase db){
         this.db         = db;
         this.wordEntity = wordEntity;
-        this.statsModel = new StatsModel(db.statsDao().getStatsByWordId(this.wordEntity.getId()));
+        this.statsModel = new StatsModel(db.statsDao().getStatsByWordId(this.wordEntity.getId()), this.db);
     }
 
     public WordModel(WordsRoomDatabase db){
@@ -79,7 +79,7 @@ public class WordModel {
 
         if(this.wordEntity.getId() == null){
             this.wordEntity.setId(db.wordDao().insertWord(this.wordEntity));
-            this.statsModel = new StatsModel(this.wordEntity.getId());
+            this.statsModel = new StatsModel(this.wordEntity.getId(), this.db);
             db.statsDao().insertStats(this.statsModel.getStatsEntity());
         }
         else{
@@ -112,7 +112,7 @@ public class WordModel {
 
     public void initialiseStatsModel() {
         if(this.wordEntity.getId() != null) {
-            this.statsModel = new StatsModel(this.db.statsDao().getStatsByWordId(this.wordEntity.getId()));
+            this.statsModel = new StatsModel(this.db.statsDao().getStatsByWordId(this.wordEntity.getId()), this.db);
         }
     }
 

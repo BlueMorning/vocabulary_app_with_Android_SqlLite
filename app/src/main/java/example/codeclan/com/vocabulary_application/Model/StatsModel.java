@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Model;
 
+import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.R;
@@ -9,14 +10,17 @@ public class StatsModel {
 
     public static final int totalTrainingStep = 10;
 
+    private WordsRoomDatabase db;
     private StatsEntity statsEntity;
 
-    public StatsModel(StatsEntity statsEntity){
+    public StatsModel(StatsEntity statsEntity, WordsRoomDatabase db){
         this.statsEntity = statsEntity;
+        this.db = db;
     }
 
-    public StatsModel(Long wordId){
+    public StatsModel(Long wordId, WordsRoomDatabase db){
         this.statsEntity = new StatsEntity(wordId, 0, EnumMasteryLevel.NEW, 0 ,0, 0, 0, 0, 0);
+        this.db = db;
     }
 
     public StatsEntity getStatsEntity() {
@@ -29,6 +33,10 @@ public class StatsModel {
 
     public int getTrainingStep() {
         return statsEntity.getTrainingStep();
+    }
+
+    public EnumMasteryLevel getMasteryLevel() {
+        return statsEntity.getMasteryLevel();
     }
 
     public String getTrainingStepLabel() {
@@ -151,4 +159,15 @@ public class StatsModel {
         return String.format("%.0f%%", this.getTotalIncorrectAnswersPercentage()*100);
     }
 
+    public void resetStats() {
+        this.getStatsEntity().setLastTrainingTotalIncorrectAnswers(0);
+        this.getStatsEntity().setLastTrainingTotalCorrectAnswers(0);
+        this.getStatsEntity().setLastTrainingTotalAnswers(0);
+        this.getStatsEntity().setTotalCorrectAnswers(0);
+        this.getStatsEntity().setTotalIncorrectAnswers(0);
+        this.getStatsEntity().setTotalAnswers(0);
+        this.getStatsEntity().setTrainingStep(0);
+        this.getStatsEntity().setMasteryLevel(EnumMasteryLevel.NEW);
+        this.db.statsDao().updateStats(this.getStatsEntity());
+    }
 }

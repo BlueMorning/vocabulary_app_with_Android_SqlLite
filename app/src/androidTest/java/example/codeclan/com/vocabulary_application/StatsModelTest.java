@@ -13,6 +13,7 @@ import example.codeclan.com.vocabulary_application.Dao.WordDao;
 import example.codeclan.com.vocabulary_application.Database.DatabaseRunner;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Model.StatsModel;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +35,8 @@ public class StatsModelTest {
         wordsDB         = Room.inMemoryDatabaseBuilder(context, WordsRoomDatabase.class).build();
         DatabaseRunner.fuelDatabase(wordsDB);
         statsEntity     = wordsDB.statsDao().getStatsByWordId(wordsDB.wordDao().getAll().get(0).getId());
-        statsModel      = new StatsModel(statsEntity);
+        statsModel      = new StatsModel(statsEntity, wordsDB);
+        statsModel.getStatsEntity().setMasteryLevel(EnumMasteryLevel.NEW);
         statsModel.getStatsEntity().setTrainingStep(5);
         statsModel.getStatsEntity().setTotalAnswers(20);
         statsModel.getStatsEntity().setTotalCorrectAnswers(15);
@@ -42,6 +44,9 @@ public class StatsModelTest {
         statsModel.getStatsEntity().setLastTrainingTotalCorrectAnswers(1);
         statsModel.getStatsEntity().setLastTrainingTotalIncorrectAnswers(3);
         wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
+
+        statsEntity     = wordsDB.statsDao().getStatsByWordId(wordsDB.wordDao().getAll().get(0).getId());
+        statsModel      = new StatsModel(statsEntity, wordsDB);
     }
 
     @After
@@ -53,6 +58,11 @@ public class StatsModelTest {
     @Test
     public void hasStatsEntity(){
         assertEquals(StatsEntity.class, statsModel.getStatsEntity().getClass());
+    }
+
+    @Test
+    public void hasMasteryLevel(){
+        assertEquals(EnumMasteryLevel.NEW, statsModel.getMasteryLevel());
     }
 
     @Test
@@ -145,6 +155,17 @@ public class StatsModelTest {
         assertEquals("25%", statsModel.getTotalIncorrectAnswersPercentageLabel());
     }
 
+    @Test
+    public void canResetStats(){
+        statsModel.resetStats();
+        assertEquals(EnumMasteryLevel.NEW, statsModel.getMasteryLevel());
+        assertEquals(0, statsModel.getTrainingStep());
+        assertEquals(0, statsModel.getTotalAnswers());
+        assertEquals(0, statsModel.getTotalCorrectAnswers());
+        assertEquals(0, statsModel.getLastTrainingTotalAnswers());
+        assertEquals(0, statsModel.getLastTrainingTotalCorrectAnswers());
+        assertEquals(0, statsModel.getLastTrainingTotalIncorrectAnswers());
+    }
 
 
 }
