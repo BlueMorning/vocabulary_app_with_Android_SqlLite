@@ -6,10 +6,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import example.codeclan.com.vocabulary_application.R;
 
 public class TrainingListActivity extends AppCompatActivity {
+
+    private ListView trainingsList;
+    private TextView searchTrainingsCount;
+    private Spinner  trainingPriorities;
+    private Spinner  trainingWordsCount;
+    private Spinner  trainingWordsStatus;
+    private Button   createTrainingButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +47,18 @@ public class TrainingListActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void initializeViewItems(){
+        trainingsList           = findViewById(R.id.trainingsList);
+        searchTrainingsCount    = findViewById(R.id.searchTrainingsCount);
+        createTrainingButton     = findViewById(R.id.createTrainingButton);
+        trainingPriorities      = findViewById(R.id.trainingPriorities);
+        trainingWordsCount      = findViewById(R.id.trainingWordsCount);
+        trainingWordsStatus     = findViewById(R.id.trainingWordsStatus);
+    }
+
+    public void onClickCreateTraining(View button){
+
     }
 }

@@ -20,12 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import example.codeclan.com.vocabulary_application.Database.DatabaseRunner;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
-import example.codeclan.com.vocabulary_application.Model.StatsModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumMasteryLevelAdapter;
@@ -56,10 +54,10 @@ public class WordsListActivity extends AppCompatActivity {
         wordModels              = new ArrayList<>();
 
         wordsSearchBar          = findViewById(R.id.wordsSearchBar);
-        wordTypes               = findViewById(R.id.wordTypes);
+        wordTypes               = findViewById(R.id.trainingPriorities);
         wordsMasteryLevels      = findViewById(R.id.wordsConfidenceLevels);
-        searchResultCount       = findViewById(R.id.searchResultCount);
-        createWordButton        = findViewById(R.id.createWordButton);
+        searchResultCount       = findViewById(R.id.searchTrainingsCount);
+        createWordButton        = findViewById(R.id.createTrainingButton);
         wordsList               = findViewById(R.id.wordsList);
 
         wordsSearchBar.addTextChangedListener(new TextWatcher()
