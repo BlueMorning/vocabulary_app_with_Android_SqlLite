@@ -38,6 +38,7 @@ public class StatsModelTest {
         statsModel.getStatsEntity().setTrainingStep(5);
         statsModel.getStatsEntity().setTotalAnswers(20);
         statsModel.getStatsEntity().setTotalCorrectAnswers(15);
+        statsModel.getStatsEntity().setLastTrainingTotalAnswers(4);
         wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
     }
 
@@ -70,6 +71,11 @@ public class StatsModelTest {
     @Test
     public void hasgetTotalCorrectAnswersPercentage(){
         assertEquals(0.75, statsModel.getTotalCorrectAnswersPercentage(), 0);
+    }
+
+    @Test
+    public void hasLastTrainingTotalAnswers(){
+        assertEquals(4, statsModel.getLastTrainingTotalAnswers());
     }
 
 }
