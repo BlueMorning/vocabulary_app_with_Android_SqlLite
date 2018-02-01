@@ -6,6 +6,7 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum EnumTrainingWordCount {
 
+    ALL(0),
     FIVE(5),
     TEN(10),
     FIFTEEN(15),

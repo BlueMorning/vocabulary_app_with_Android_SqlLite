@@ -6,6 +6,7 @@ package example.codeclan.com.vocabulary_application.Enumerations;
 
 public enum EnumTrainingPriority {
 
+    ALL("All"),
     LOW("Low"),
     MEDIUM("Medium"),
     HIGH("High");
