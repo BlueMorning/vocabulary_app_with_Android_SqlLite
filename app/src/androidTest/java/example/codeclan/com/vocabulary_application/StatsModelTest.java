@@ -36,6 +36,7 @@ public class StatsModelTest {
         statsEntity     = wordsDB.statsDao().getStatsByWordId(wordsDB.wordDao().getAll().get(0).getId());
         statsModel      = new StatsModel(statsEntity);
         statsModel.getStatsEntity().setTrainingStep(5);
+        statsModel.getStatsEntity().setTotalAnswers(20);
         wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
     }
 
@@ -53,6 +54,11 @@ public class StatsModelTest {
     @Test
     public void hasTrainingStepLabel(){
         assertEquals("5 / 10", statsModel.getTrainingStepLabel());
+    }
+
+    @Test
+    public void hasTotalAnswers(){
+        assertEquals(20, statsModel.getTotalAnswers());
     }
 
 
