@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import example.codeclan.com.vocabulary_application.Database.DatabaseRunner;
+import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.R;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        DatabaseRunner.fuelDatabase(this);
+        DatabaseRunner.fuelDatabase(WordsRoomDatabase.getDatabase(this));
 
     }
 

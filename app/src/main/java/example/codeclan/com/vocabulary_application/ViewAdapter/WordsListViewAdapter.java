@@ -44,7 +44,7 @@ public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
         wordType.setText(currentWordModel.getWordEntity().getType().getShortLabel());
 
         ImageView imageMasteryLevel = listItemView.findViewById(R.id.imageMasteryLevel);
-        imageMasteryLevel.setImageResource(currentWordModel.getMasteryLevelDrawableId());
+        imageMasteryLevel.setImageResource(currentWordModel.getStatsModel().getMasteryLevelDrawableId());
 
         ProgressBar progressBar = listItemView.findViewById(R.id.listWordsWordTrainingStep);
         progressBar.setMax(StatsModel.totalTrainingStep);

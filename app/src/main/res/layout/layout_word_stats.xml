@@ -198,7 +198,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageMasteryLevel3"
+        android:id="@+id/imageMasteryLevel"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"

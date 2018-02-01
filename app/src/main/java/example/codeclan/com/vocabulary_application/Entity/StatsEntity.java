@@ -158,4 +158,5 @@ public class StatsEntity {
     public void setWordId(Long wordId) {
         this.wordId = wordId;
     }
+
 }

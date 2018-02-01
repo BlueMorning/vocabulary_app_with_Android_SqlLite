@@ -97,10 +97,13 @@ public class MeaningEntityTest {
         Long word_id = wordDao.insertWord(wordEntity);
         assertEquals(1, wordDao.getAll().size());
 
+        assertEquals(0, meaningDao.getMeaningsByWordId(word_id).size());
+
         MeaningEntity meaning = new MeaningEntity(word_id, "to stop being involved in an activity, event, or situation",
                 "The firm is pulling out of the personal computer business",
                 "to stop, to break off", "to continue");
         Long meaning_id = meaningDao.insertMeaning(meaning);
+        meaning.setId(meaning_id);
 
         assertEquals(1, meaningDao.getMeaningsByWordId(word_id).size());
 

@@ -27,12 +27,33 @@ import example.codeclan.com.vocabulary_application.ViewAdapter.ViewMeaningsListA
 public class ViewWordActivity extends AppCompatActivity {
 
 
+    // Tab Item Word
     private TextView viewWordSpelling;
     private TextView viewWordType;
     private ListView viewWordMeanings;
     private WordsRoomDatabase database;
     private WordModel wordModel;
     private Button viewWordDeleteButton;
+
+    // Tab Item Stats
+    private TextView wordStatsLatestTestWrongAnswersPercentage;
+    private TextView wordStatsLatestTestRightAnswersPercentage;
+
+    private TextView wordStatsAllTestRightAnswersPercentage;
+    private TextView wordStatsAllTestWrongAnswersPercentage;
+
+    private TextView wordStatsAllTestWrongAnswers;
+    private TextView wordStatsAllTestRightAnswers;
+
+    private TextView wordStatsLatestTestWrongAnswers;
+    private TextView wordStatsLatestTestRightAnswers;
+
+    private TextView wordStatsTrainingStepProgressBar;
+    private TextView wordStatsTrainingStep;
+
+    private TextView imageMasteryLevel;
+
+
 
 
     @Override

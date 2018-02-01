@@ -49,24 +49,6 @@ public class WordModel {
         return this.meaningsList;
     }
 
-    public int getMasteryLevelDrawableId(){
-
-        if(this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.HIGH){
-            return R.drawable.high_mastery;
-        }
-        else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.MEDIUM){
-            return R.drawable.medium_mastery;
-        }
-        else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.LOW) {
-            return R.drawable.low_mastery;
-        }
-        else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.NEW) {
-            return R.drawable.new_mastery;
-        }
-        else {
-            return R.drawable.new_mastery;
-        }
-    }
 
     public void createWordEntity(String wordSpelling, EnumWordType enumWordType){
         this.wordEntity = new WordEntity(enumWordType, wordSpelling, "");

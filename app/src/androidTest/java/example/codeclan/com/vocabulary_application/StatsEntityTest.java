@@ -13,6 +13,7 @@ import example.codeclan.com.vocabulary_application.Dao.WordDao;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 import static org.junit.Assert.assertEquals;
@@ -46,7 +47,7 @@ public class StatsEntityTest {
 
 
         // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
-        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, EnumMasteryLevel.NEW, 0, 0, 0, 0, 0, 0 );
         statsEntity.setId(statsDao.insertStats(statsEntity));
 
         assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
@@ -62,15 +63,15 @@ public class StatsEntityTest {
         assertEquals(1, wordDao.getAll().size());
 
         // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
-        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, EnumMasteryLevel.NEW, 0, 0, 0, 0, 0, 0 );
         statsEntity.setId(statsDao.insertStats(statsEntity));
 
         assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
 
-        statsEntity.setMasteryLevel(4);
+        statsEntity.setMasteryLevel(EnumMasteryLevel.HIGH);
         statsDao.updateStats(statsEntity);
 
-        assertEquals(4, statsDao.getStatsByWordId(wordEntity.getId()).getConfidenceLevel());
+        assertEquals(EnumMasteryLevel.HIGH, statsDao.getStatsByWordId(wordEntity.getId()).getMasteryLevel());
 
     }
 
@@ -82,7 +83,7 @@ public class StatsEntityTest {
         assertEquals(1, wordDao.getAll().size());
 
         // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
-        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, EnumMasteryLevel.NEW, 0, 0, 0, 0, 0, 0 );
         statsEntity.setId(statsDao.insertStats(statsEntity));
 
         assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());
@@ -100,7 +101,7 @@ public class StatsEntityTest {
         assertEquals(1, wordDao.getAll().size());
 
         // public StatsEntity(Long wordId, int trainingStep, int confidenceLevel, int totalAnswers, int totalCorrectAnswers, int totalIncorrectAnswers, int lastTrainingTotalAnswers, int lastTrainingTotalCorrectAnswers, int lastTrainingTotalIncorrectAnswers)
-        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, 0, 0, 0, 0, 0, 0, 0 );
+        StatsEntity statsEntity = new StatsEntity(wordEntity.getId(), 1, EnumMasteryLevel.NEW, 0, 0, 0, 0, 0, 0 );
         statsEntity.setId(statsDao.insertStats(statsEntity));
 
         assertEquals(statsEntity.getId(), statsDao.getStatsByWordId(wordEntity.getId()).getId());

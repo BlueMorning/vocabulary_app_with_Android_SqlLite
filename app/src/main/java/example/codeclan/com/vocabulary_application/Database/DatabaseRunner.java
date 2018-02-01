@@ -1,5 +1,6 @@
 package example.codeclan.com.vocabulary_application.Database;
 
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import java.util.Random;
@@ -14,8 +15,7 @@ import example.codeclan.com.vocabulary_application.Model.StatsModel;
 public class DatabaseRunner {
 
 
-    public static void fuelDatabase(Context context){
-        WordsRoomDatabase db = WordsRoomDatabase.getDatabase(context);
+    public static void fuelDatabase(WordsRoomDatabase db){
 
         db.statsDao().deleteAllStats();
         db.meaningDao().deleteAllMeanings();
@@ -46,7 +46,7 @@ public class DatabaseRunner {
 
             Long word_id = db.wordDao().insertWord(word);
 
-            StatsEntity stats = new StatsEntity(word_id, new Random().nextInt(11), EnumMasteryLevel.values()[new Random().nextInt(EnumMasteryLevel.values().length-1)+1], 0, 0, 0, 0, 0, 0);
+            StatsEntity stats = new StatsEntity(word_id, new Random().nextInt(11), EnumMasteryLevel.values()[new Random().nextInt(EnumMasteryLevel.values().length-1)+1], 20, 15, 5, 5, 4, 1);
             db.statsDao().insertStats(stats);
         }
     }
