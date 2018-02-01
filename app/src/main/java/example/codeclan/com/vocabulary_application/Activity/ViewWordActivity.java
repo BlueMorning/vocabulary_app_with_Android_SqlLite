@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,6 @@ public class ViewWordActivity extends AppCompatActivity {
     private Button viewWordDeleteButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,21 @@ public class ViewWordActivity extends AppCompatActivity {
         database                = WordsRoomDatabase.getDatabase(this);
         WordEntity wordEntity   = (WordEntity)this.getIntent().getSerializableExtra("wordEntity");
         wordModel               = new WordModel(wordEntity, database);
+
+        TabHost mTabHost;
+        mTabHost = (TabHost)findViewById(R.id.viewWordTabHost);
+        mTabHost.setup();
+
+        TabHost.TabSpec spec1 = mTabHost.newTabSpec("Word");
+        spec1.setContent(R.id.viewWordTabWord);
+        spec1.setIndicator("Word");
+        mTabHost.addTab(spec1);
+
+        TabHost.TabSpec spec2 = mTabHost.newTabSpec("Stats");
+        spec2.setContent(R.id.viewWordTabStats);
+        spec2.setIndicator("Stats");
+        mTabHost.addTab(spec2);
+
 
         viewWordSpelling        = findViewById(R.id.viewWordSpelling);
         viewWordType            = findViewById(R.id.viewWordType);

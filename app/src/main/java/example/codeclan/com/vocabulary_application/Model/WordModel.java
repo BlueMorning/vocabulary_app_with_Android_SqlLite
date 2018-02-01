@@ -52,19 +52,19 @@ public class WordModel {
     public int getMasteryLevelDrawableId(){
 
         if(this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.HIGH){
-            return R.drawable.high_mastery2;
+            return R.drawable.high_mastery;
         }
         else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.MEDIUM){
-            return R.drawable.medium_mastery2;
+            return R.drawable.medium_mastery;
         }
         else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.LOW) {
-            return R.drawable.low_mastery2;
+            return R.drawable.low_mastery;
         }
         else if (this.statsModel.getStatsEntity().getMasteryLevel() == EnumMasteryLevel.NEW) {
-            return R.drawable.new_mastery2;
+            return R.drawable.new_mastery;
         }
         else {
-            return R.drawable.new_mastery2;
+            return R.drawable.new_mastery;
         }
     }
 
