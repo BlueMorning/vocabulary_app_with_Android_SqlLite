@@ -1,5 +1,7 @@
 package example.codeclan.com.vocabulary_application.Model;
 
+import android.graphics.drawable.Drawable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -7,7 +9,9 @@ import java.util.stream.Collectors;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
+import example.codeclan.com.vocabulary_application.R;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
@@ -51,7 +55,28 @@ public class TrainingModel  {
         return this.trainingEntity.getTotalWords();
     }
 
+    public LocalDate getBestNextDate() {
+        return this.trainingEntity.getNextBestTraining();
+    }
+
     public String getBestNextDateLabel() {
         return this.trainingEntity.getNextBestTraining().format(ISO_LOCAL_DATE);
+    }
+
+    public int getImageTiming() {
+
+        if(this.getBestNextDate().isAfter(LocalDate.now())){
+            return R.drawable.deadline_later;
+        }
+        else if (this.getBestNextDate().isEqual(LocalDate.now())){
+            return R.drawable.deadline_now;
+        }
+        else {
+            return R.drawable.deadline_before;
+        }
+    }
+
+    public int getStepNumber() {
+        return this.getTrainingEntity().getStepNumber();
     }
 }

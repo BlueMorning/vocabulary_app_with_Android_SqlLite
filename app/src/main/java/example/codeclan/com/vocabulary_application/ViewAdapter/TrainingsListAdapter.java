@@ -5,18 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import example.codeclan.com.vocabulary_application.Model.StatsModel;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
-import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
-import example.codeclan.com.vocabulary_application.Utils.StringUtils;
 
 /**
  * Created by horizon on 01/02/2018.
@@ -48,6 +43,8 @@ public class TrainingsListAdapter extends ArrayAdapter<TrainingModel> {
         trainingsListNumber.setText(currentTrainingModel.getNumber());
         trainingsListTotalWords.setText(currentTrainingModel.getTotalWords());
         trainingsListBestNextDate.setText(currentTrainingModel.getBestNextDateLabel());
+        trainingsListImageTiming.setImageResource(currentTrainingModel.getImageTiming());
+        trainingsListStep.setText(currentTrainingModel.getStepNumber());
 
         listItemView.setTag(currentTrainingModel);
 

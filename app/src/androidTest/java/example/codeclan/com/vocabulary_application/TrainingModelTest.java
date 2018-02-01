@@ -78,6 +78,10 @@ public class TrainingModelTest {
         assertEquals(LocalDate.now().format(ISO_LOCAL_DATE), trainingModel.getBestNextDateLabel());
     }
 
+    @Test
+    public void hasStepNumber(){
+        assertEquals(1, trainingModel.getStepNumber());
+    }
 
 
 
