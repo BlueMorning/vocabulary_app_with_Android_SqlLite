@@ -100,4 +100,13 @@ public class StatsModelTest {
         assertEquals(0.75, statsModel.getLastTrainingTotalIncorrectAnswersPercentage(), 0);
     }
 
+    @Test
+    public void hasLastTrainingCorrectAnswersLabel(){
+        assertEquals("1 / 4", statsModel.getLastTrainingCorrectAnswersLabel());
+    }
+
+
+
+
+
 }

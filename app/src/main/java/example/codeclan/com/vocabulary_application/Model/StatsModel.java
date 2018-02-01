@@ -132,19 +132,19 @@ public class StatsModel {
     }
 
     public String getLastTrainingTotalCorrectAnswersPercentageLabel(){
-        return String.format("%s%%", this.getLastTrainingTotalCorrectAnswersPercentageLabel());
+        return String.format("%.0f%%", this.getLastTrainingTotalCorrectAnswersPercentageLabel());
     }
 
     public String getLastTrainingTotalIncorrectAnswersPercentageLabel(){
-        return String.format("%s%%", this.getLastTrainingTotalIncorrectAnswersPercentageLabel());
+        return String.format("%.0f%%", this.getLastTrainingTotalIncorrectAnswersPercentageLabel());
     }
 
     public String getTotalCorrectAnswersPercentageLabel(){
-        return String.format("%s%%", this.getTotalCorrectAnswersPercentage());
+        return String.format("%.0f%%", this.getTotalCorrectAnswersPercentage());
     }
 
     public String getTotalIncorrectAnswersPercentageLabel(){
-        return String.format("%s%%", this.getTotalIncorrectAnswersPercentage());
+        return String.format("%.0f%%", this.getTotalIncorrectAnswersPercentage());
     }
 
 }
