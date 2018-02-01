@@ -84,4 +84,9 @@ public class StatsModelTest {
         assertEquals(2, statsModel.getLastTrainingTotalCorrectAnswers());
     }
 
+    @Test
+    public void hasLastTrainingTotalCorrectAnswersPercentage(){
+        assertEquals(0.5, statsModel.getLastTrainingTotalCorrectAnswersPercentage(), 0);
+    }
+
 }

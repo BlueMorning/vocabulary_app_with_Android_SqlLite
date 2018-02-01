@@ -94,7 +94,7 @@ public class StatsModel {
     public double getLastTrainingTotalCorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
-            return getLastTrainingTotalCorrectAnswers() / getLastTrainingTotalAnswers();
+            return new Double(getLastTrainingTotalCorrectAnswers()) / getLastTrainingTotalAnswers();
         }
         else{
             return 0;
@@ -108,7 +108,7 @@ public class StatsModel {
     public double getLastTrainingTotalIncorrectAnswersPercentage(){
 
         if(getTotalAnswers() > 0) {
-            return getLastTrainingTotalIncorrectAnswers() / getLastTrainingTotalAnswers();
+            return new Double(getLastTrainingTotalIncorrectAnswers()) / getLastTrainingTotalAnswers();
         }
         else{
             return 0;
