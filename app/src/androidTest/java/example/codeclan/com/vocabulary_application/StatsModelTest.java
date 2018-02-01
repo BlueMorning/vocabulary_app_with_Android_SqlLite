@@ -39,7 +39,8 @@ public class StatsModelTest {
         statsModel.getStatsEntity().setTotalAnswers(20);
         statsModel.getStatsEntity().setTotalCorrectAnswers(15);
         statsModel.getStatsEntity().setLastTrainingTotalAnswers(4);
-        statsModel.getStatsEntity().setLastTrainingTotalCorrectAnswers(2);
+        statsModel.getStatsEntity().setLastTrainingTotalCorrectAnswers(1);
+        statsModel.getStatsEntity().setLastTrainingTotalIncorrectAnswers(3);
         wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
     }
 
@@ -81,12 +82,17 @@ public class StatsModelTest {
 
     @Test
     public void hasLastTrainingTotalCorrectAnswers(){
-        assertEquals(2, statsModel.getLastTrainingTotalCorrectAnswers());
+        assertEquals(1, statsModel.getLastTrainingTotalCorrectAnswers());
     }
 
     @Test
     public void hasLastTrainingTotalCorrectAnswersPercentage(){
-        assertEquals(0.5, statsModel.getLastTrainingTotalCorrectAnswersPercentage(), 0);
+        assertEquals(0.25, statsModel.getLastTrainingTotalCorrectAnswersPercentage(), 0);
+    }
+
+    @Test
+    public void hasLastTrainingTotalIncorrectAnswers(){
+        assertEquals(3, statsModel.getLastTrainingTotalIncorrectAnswers(), 0);
     }
 
 }
