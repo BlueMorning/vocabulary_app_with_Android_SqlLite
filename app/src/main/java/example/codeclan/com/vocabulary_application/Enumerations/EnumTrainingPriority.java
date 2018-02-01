@@ -20,5 +20,4 @@ public enum EnumTrainingPriority {
         return this.label;
     }
 
-
 }
