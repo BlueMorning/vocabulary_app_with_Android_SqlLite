@@ -125,6 +125,11 @@ public class StatsModelTest {
         assertEquals("25%", statsModel.getLastTrainingTotalCorrectAnswersPercentageLabel());
     }
 
+    @Test
+    public void hasLastTrainingTotalIncorrectAnswersPercentageLabel(){
+        assertEquals("75%", statsModel.getLastTrainingTotalIncorrectAnswersPercentageLabel());
+    }
+
 
 
 
