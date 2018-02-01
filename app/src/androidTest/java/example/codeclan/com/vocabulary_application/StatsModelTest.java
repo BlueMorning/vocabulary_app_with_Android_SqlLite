@@ -35,6 +35,8 @@ public class StatsModelTest {
         DatabaseRunner.fuelDatabase(wordsDB);
         statsEntity     = wordsDB.statsDao().getStatsByWordId(wordsDB.wordDao().getAll().get(0).getId());
         statsModel      = new StatsModel(statsEntity);
+        statsModel.getStatsEntity().setTrainingStep(5);
+        wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
     }
 
     @After
@@ -48,7 +50,10 @@ public class StatsModelTest {
         assertEquals(StatsEntity.class, statsModel.getStatsEntity().getClass());
     }
 
-
+    @Test
+    public void hasTrainingStepLabel(){
+        assertEquals("5 / 10", statsModel.getTrainingStepLabel());
+    }
 
 
 
