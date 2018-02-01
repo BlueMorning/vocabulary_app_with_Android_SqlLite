@@ -56,6 +56,11 @@ public class StatsModelTest {
     }
 
     @Test
+    public void hasTrainingStep(){
+        assertEquals(5, statsModel.getTrainingStep());
+    }
+
+    @Test
     public void hasTrainingStepLabel(){
         assertEquals("5 / 10", statsModel.getTrainingStepLabel());
     }
@@ -139,6 +144,7 @@ public class StatsModelTest {
     public void hasTotalIncorrectAnswersPercentageLabel(){
         assertEquals("25%", statsModel.getTotalIncorrectAnswersPercentageLabel());
     }
+
 
 
 }

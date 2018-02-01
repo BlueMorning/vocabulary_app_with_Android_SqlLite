@@ -27,6 +27,10 @@ public class StatsModel {
         this.statsEntity = statsEntity;
     }
 
+    public int getTrainingStep() {
+        return statsEntity.getTrainingStep();
+    }
+
     public String getTrainingStepLabel() {
         return String.format("%s / %s", statsEntity.getTrainingStep(), totalTrainingStep);
     }

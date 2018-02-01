@@ -7,21 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
-import example.codeclan.com.vocabulary_application.Model.MeaningModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.Utils.StringUtils;
-import example.codeclan.com.vocabulary_application.ViewAdapter.EnumWordTypeAdapter;
-import example.codeclan.com.vocabulary_application.ViewAdapter.MeaningsListAdapter;
 import example.codeclan.com.vocabulary_application.ViewAdapter.ViewMeaningsListAdapter;
 
 public class ViewWordActivity extends AppCompatActivity {
@@ -36,6 +32,7 @@ public class ViewWordActivity extends AppCompatActivity {
     private Button viewWordDeleteButton;
 
     // Tab Item Stats
+    private TextView wordStatsWordSpelling;
     private TextView wordStatsLatestTestWrongAnswersPercentage;
     private TextView wordStatsLatestTestRightAnswersPercentage;
 
@@ -48,12 +45,10 @@ public class ViewWordActivity extends AppCompatActivity {
     private TextView wordStatsLatestTestWrongAnswers;
     private TextView wordStatsLatestTestRightAnswers;
 
-    private TextView wordStatsTrainingStepProgressBar;
+    private ProgressBar wordStatsTrainingStepProgressBar;
     private TextView wordStatsTrainingStep;
 
-    private TextView imageMasteryLevel;
-
-
+    private ImageView imageMasteryLevel;
 
 
     @Override
@@ -79,21 +74,8 @@ public class ViewWordActivity extends AppCompatActivity {
         spec2.setIndicator("Stats");
         mTabHost.addTab(spec2);
 
-
-        viewWordSpelling        = findViewById(R.id.viewWordSpelling);
-        viewWordType            = findViewById(R.id.viewWordType);
-        viewWordMeanings        = findViewById(R.id.viewWordMeaningsList);
-        viewWordDeleteButton    = findViewById(R.id.viewWordDeleteButton);
-
-        viewWordDeleteButton.setTag(wordModel);
-
-        viewWordSpelling.setText(StringUtils.capitalize(wordModel.getWordEntity().getSpelling().toUpperCase()));
-        viewWordType.setText(wordModel.getWordEntity().getType().getLabel());
-
-        wordModel.initializeMeanings();
-        ViewMeaningsListAdapter meaningsListAdapter = new ViewMeaningsListAdapter(this,
-                this.wordModel.getMeaningsList());
-        viewWordMeanings.setAdapter(meaningsListAdapter);
+        this.initializeWordItemView();
+        this.initializeWordStatsViewItem();
 
     }
 
@@ -122,5 +104,81 @@ public class ViewWordActivity extends AppCompatActivity {
         wordModel.delete();
         Intent intent = new Intent(this, WordsListActivity.class);
         startActivity(intent);
+    }
+
+
+    public void initializeWordItemView(){
+
+        viewWordSpelling        = findViewById(R.id.viewWordSpelling);
+        viewWordType            = findViewById(R.id.viewWordType);
+        viewWordMeanings        = findViewById(R.id.viewWordMeaningsList);
+        viewWordDeleteButton    = findViewById(R.id.viewWordDeleteButton);
+
+        viewWordDeleteButton.setTag(wordModel);
+
+        viewWordSpelling.setText(StringUtils.capitalize(wordModel.getWordEntity().getSpelling().toUpperCase()));
+        viewWordType.setText(wordModel.getWordEntity().getType().getLabel());
+
+        wordModel.initializeMeanings();
+        ViewMeaningsListAdapter meaningsListAdapter = new ViewMeaningsListAdapter(this,
+                this.wordModel.getMeaningsList());
+        viewWordMeanings.setAdapter(meaningsListAdapter);
+    }
+
+    public void initializeWordStatsViewItem(){
+
+        wordStatsWordSpelling                       = findViewById(R.id.wordStatsWordSpelling);
+
+        wordStatsLatestTestWrongAnswersPercentage   = findViewById(R.id.wordStatsLatestTestWrongAnswersPercentage);
+        wordStatsLatestTestRightAnswersPercentage   = findViewById(R.id.wordStatsLatestTestRightAnswersPercentage);
+
+        wordStatsAllTestRightAnswersPercentage      = findViewById(R.id.wordStatsAllTestRightAnswersPercentage);
+        wordStatsAllTestWrongAnswersPercentage      = findViewById(R.id.wordStatsAllTestWrongAnswersPercentage);
+
+        wordStatsAllTestWrongAnswers                = findViewById(R.id.wordStatsAllTestWrongAnswers);
+        wordStatsAllTestRightAnswers                = findViewById(R.id.wordStatsAllTestRightAnswers);
+
+        wordStatsLatestTestWrongAnswers             = findViewById(R.id.wordStatsLatestTestWrongAnswers);
+        wordStatsLatestTestRightAnswers             = findViewById(R.id.wordStatsLatestTestRightAnswers);
+
+        wordStatsTrainingStepProgressBar            = findViewById(R.id.wordStatsTrainingStepProgressBar);
+        wordStatsTrainingStep                       = findViewById(R.id.wordStatsTrainingStep);
+
+        imageMasteryLevel                           = findViewById(R.id.imageMasteryLevel);
+
+        wordStatsWordSpelling.setText(StringUtils.capitalize(wordModel.getWordEntity().getSpelling().toUpperCase()));
+
+        wordStatsLatestTestWrongAnswersPercentage.setText(
+                wordModel.getStatsModel().getLastTrainingTotalIncorrectAnswersPercentageLabel());
+
+        wordStatsLatestTestRightAnswersPercentage.setText(
+                wordModel.getStatsModel().getLastTrainingTotalCorrectAnswersPercentageLabel());
+
+        wordStatsAllTestRightAnswersPercentage.setText(
+                wordModel.getStatsModel().getTotalCorrectAnswersPercentageLabel());
+
+        wordStatsAllTestWrongAnswersPercentage.setText(
+                wordModel.getStatsModel().getTotalIncorrectAnswersPercentageLabel());
+
+        wordStatsAllTestWrongAnswers.setText(
+                StringUtils.intToString(wordModel.getStatsModel().getTotalIncorrectAnswers()));
+
+        wordStatsAllTestRightAnswers.setText(
+                StringUtils.intToString(wordModel.getStatsModel().getTotalCorrectAnswers()));
+
+        wordStatsLatestTestWrongAnswers.setText(
+                StringUtils.intToString(wordModel.getStatsModel().getLastTrainingTotalIncorrectAnswers()));
+
+        wordStatsLatestTestRightAnswers.setText(
+                StringUtils.intToString(wordModel.getStatsModel().getLastTrainingTotalCorrectAnswers()));
+
+        wordStatsTrainingStepProgressBar.setProgress(
+                wordModel.getStatsModel().getTrainingStep());
+
+        wordStatsTrainingStep.setText(
+                wordModel.getStatsModel().getTrainingStepLabel());
+
+        imageMasteryLevel.setImageResource(
+                wordModel.getStatsModel().getMasteryLevelDrawableId());
     }
 }
