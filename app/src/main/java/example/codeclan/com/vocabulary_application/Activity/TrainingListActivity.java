@@ -20,9 +20,11 @@ import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingPriority;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingWordCount;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingPriorityAdapter;
@@ -36,7 +38,7 @@ public class TrainingListActivity extends AppCompatActivity {
     private TextView    searchTrainingsCount;
     private Spinner     trainingPriorities;
     private Spinner     trainingWordsCount;
-    private Spinner trainingStatus;
+    private Spinner     trainingStatus;
     private Button      createTrainingButton;
 
     private WordsRoomDatabase db;
@@ -144,13 +146,17 @@ public class TrainingListActivity extends AppCompatActivity {
 
         List<TrainingEntity> trainingsEntityList;
 
-        /*
-        spelling         = spelling.trim().isEmpty() ?                              "" : spelling;
-        enumWordType     = (EnumWordType.ALL.toString()     == enumWordType) ?      "" : enumWordType;
-        enumMasteryLevel = (EnumMasteryLevel.ALL.toString() == enumMasteryLevel) ?  "" : enumMasteryLevel;
-        */
 
-        trainingsEntityList = db.trainingDao().getAll();
+        String enumPriority     = ((EnumTrainingPriority)trainingPriorities.getSelectedItem()).toString();
+        int enumWordCount       = ((EnumTrainingWordCount)trainingWordsCount.getSelectedItem()).getWordCount();
+        String enumStatus       = ((EnumTrainingStatus)trainingStatus.getSelectedItem()).toString();
+
+        enumPriority            = (EnumTrainingPriority.ALL.toString()      == enumPriority)    ?  "" : enumPriority;
+        enumWordCount           = (EnumTrainingWordCount.ALL.getWordCount() == enumWordCount)   ?  0 : enumWordCount;
+        enumStatus              = (EnumTrainingStatus.ALL.toString()        == enumStatus)      ?  "" : enumStatus;
+
+
+        trainingsEntityList = db.trainingDao().getTrainingByPriorityAndWordCountAndStatus(enumPriority, enumWordCount, enumStatus);
 
         trainingModels = new ArrayList<>(trainingsEntityList.stream().map(trainingEntity -> {
                     return new TrainingModel(trainingEntity, db);

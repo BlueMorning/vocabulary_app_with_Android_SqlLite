@@ -41,4 +41,16 @@ public interface TrainingDao {
 
     @Query("DELETE FROM trainings")
     void deleteAllTrainings();
+
+    @Query("SELECT * FROM trainings WHERE "+
+            "     (:enumWordCount = 0  OR tra_total_words = :enumWordCount) " +
+            " AND (:enumStatus    = '' OR tra_status = :enumStatus) " +
+            " AND (:enumPriority  = '' " +
+            "       OR (:enumPriority = 'LOW'       AND tra_next_best_training > date('now'))" +
+            "       OR (:enumPriority = 'MEDIUM'    AND tra_next_best_training = date('now'))" +
+            "       OR (:enumPriority = 'HIGH'      AND tra_next_best_training < date('now')))" +
+            " ORDER BY tra_next_best_training ASC")
+    List<TrainingEntity> getTrainingByPriorityAndWordCountAndStatus(String enumPriority,
+                                                                    int enumWordCount,
+                                                                    String enumStatus);
 }
