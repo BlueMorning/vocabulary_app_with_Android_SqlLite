@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.StatsModel;
+import example.codeclan.com.vocabulary_application.Model.TrainingModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.Utils.StringUtils;
@@ -47,7 +48,7 @@ public class WordsListViewAdapter extends ArrayAdapter<WordModel> {
         imageMasteryLevel.setImageResource(currentWordModel.getStatsModel().getMasteryLevelDrawableId());
 
         ProgressBar progressBar = listItemView.findViewById(R.id.listWordsWordTrainingStep);
-        progressBar.setMax(StatsModel.totalTrainingStep);
+        progressBar.setMax(TrainingModel.totalTrainingStep);
         progressBar.setMin(0);
         progressBar.setProgress(currentWordModel.getStatsModel().getStatsEntity().getTrainingStep());
 

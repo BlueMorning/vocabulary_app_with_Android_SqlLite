@@ -18,6 +18,8 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 public class TrainingModel  {
 
+    public static final int totalTrainingStep = 10;
+
     private WordsRoomDatabase db;
     private TrainingEntity trainingEntity;
     private ArrayList<WordModel> wordsModelList;
@@ -37,6 +39,10 @@ public class TrainingModel  {
 
     public int getNumber() {
         return this.getTrainingEntity().getNumber();
+    }
+
+    public String getNumberLabel() {
+        return String.format("N°%s", this.getTrainingEntity().getNumber());
     }
 
     public ArrayList<WordModel> getwordsModelList(){
@@ -68,7 +74,8 @@ public class TrainingModel  {
         if(this.getBestNextDate().isAfter(LocalDate.now())){
             return R.drawable.deadline_later;
         }
-        else if (this.getBestNextDate().isEqual(LocalDate.now())){
+        else if (this.getBestNextDate().getDayOfYear() == LocalDate.now().getDayOfYear()
+                 && this.getBestNextDate().getYear() == LocalDate.now().getYear()){
             return R.drawable.deadline_now;
         }
         else {
@@ -78,5 +85,9 @@ public class TrainingModel  {
 
     public int getStepNumber() {
         return this.getTrainingEntity().getStepNumber();
+    }
+
+    public String getStepNumberLabel() {
+        return String.format("%s / %s", this.getTrainingEntity().getStepNumber(), totalTrainingStep);
     }
 }

@@ -8,8 +8,6 @@ import example.codeclan.com.vocabulary_application.R;
 
 public class StatsModel {
 
-    public static final int totalTrainingStep = 10;
-
     private WordsRoomDatabase db;
     private StatsEntity statsEntity;
 
@@ -40,7 +38,7 @@ public class StatsModel {
     }
 
     public String getTrainingStepLabel() {
-        return String.format("%s / %s", statsEntity.getTrainingStep(), totalTrainingStep);
+        return String.format("%s / %s", statsEntity.getTrainingStep(), TrainingModel.totalTrainingStep);
     }
 
     public int getMasteryLevelDrawableId(){

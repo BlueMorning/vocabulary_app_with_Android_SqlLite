@@ -36,6 +36,9 @@ public interface TrainingDao {
     @Delete
     public void deleteTraining(TrainingEntity training);
 
+    @Query("DELETE FROM trainings WHERE tra_id = :id")
+    void deleteTrainingById(Long id);
 
-
+    @Query("DELETE FROM trainings")
+    void deleteAllTrainings();
 }

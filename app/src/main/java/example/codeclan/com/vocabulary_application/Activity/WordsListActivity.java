@@ -156,11 +156,11 @@ public class WordsListActivity extends AppCompatActivity {
         }
         ).collect(Collectors.toList()));
 
-        voidUpdateResults();
+        updateSearchResultsViewItems();
     }
 
 
-    protected void voidUpdateResults(){
+    protected void updateSearchResultsViewItems(){
 
         wordsListViewAdapter = new WordsListViewAdapter(this, wordModels);
         wordsList.setAdapter(wordsListViewAdapter);
