@@ -37,6 +37,7 @@ public class StatsModelTest {
         statsModel      = new StatsModel(statsEntity);
         statsModel.getStatsEntity().setTrainingStep(5);
         statsModel.getStatsEntity().setTotalAnswers(20);
+        statsModel.getStatsEntity().setTotalCorrectAnswers(15);
         wordsDB.statsDao().updateStats(statsModel.getStatsEntity());
     }
 
@@ -59,6 +60,11 @@ public class StatsModelTest {
     @Test
     public void hasTotalAnswers(){
         assertEquals(20, statsModel.getTotalAnswers());
+    }
+
+    @Test
+    public void hasTotalCorrectAnswers(){
+        assertEquals(15, statsModel.getTotalCorrectAnswers());
     }
 
 
