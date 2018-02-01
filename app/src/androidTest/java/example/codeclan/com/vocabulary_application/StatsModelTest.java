@@ -105,6 +105,11 @@ public class StatsModelTest {
         assertEquals("1 / 4", statsModel.getLastTrainingCorrectAnswersLabel());
     }
 
+    @Test
+    public void hasLastTrainingIncorrectAnswersLabel(){
+        assertEquals("3 / 4", statsModel.getLastTrainingIncorrectAnswersLabel());
+    }
+
 
 
 
