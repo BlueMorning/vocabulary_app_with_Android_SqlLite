@@ -11,6 +11,7 @@ import java.util.List;
 
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 @Dao
 public interface TrainingDao {
@@ -53,4 +54,12 @@ public interface TrainingDao {
     List<TrainingEntity> getTrainingByPriorityAndWordCountAndStatus(String enumPriority,
                                                                     int enumWordCount,
                                                                     String enumStatus);
+
+    @Query("SELECT MAX(tra_number)+1 FROM trainings")
+    int getNewTrainingNumber();
+
+    @Query("SELECT * FROM WORDS WHERE (:enumWordType == '' OR wrd_type == :enumWordType) " +
+            "AND (SELECT COUNT(words_trainings_joins.wrd_tra_wrd_id) FROM words_trainings_joins " +
+            "WHERE words_trainings_joins.wrd_tra_wrd_id = WORDS.wrd_id) = 0 ")
+    WordEntity selectNewWordForTraining(EnumWordType enumWordType);
 }

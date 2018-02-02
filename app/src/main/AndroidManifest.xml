@@ -19,7 +19,8 @@
         <activity android:name=".Activity.WordsListActivity" />
         <activity android:name=".Activity.TrainingListActivity" />
         <activity android:name=".Activity.CreateWordActivity" />
-        <activity android:name=".Activity.ViewWordActivity"></activity>
+        <activity android:name=".Activity.ViewWordActivity" />
+        <activity android:name=".Activity.CreateTrainingActivity"></activity>
     </application>
 
 </manifest>

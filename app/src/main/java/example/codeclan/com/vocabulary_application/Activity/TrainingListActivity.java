@@ -20,12 +20,14 @@ import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
+import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingPriority;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingWordCount;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
+import example.codeclan.com.vocabulary_application.Model.WordModel;
 import example.codeclan.com.vocabulary_application.R;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingPriorityAdapter;
 import example.codeclan.com.vocabulary_application.ViewAdapter.EnumTrainingStatusAdapter;
@@ -175,6 +177,7 @@ public class TrainingListActivity extends AppCompatActivity {
     }
 
     public void onClickCreateTraining(View button){
-
+        Intent intent = new Intent(this, CreateTrainingActivity.class);
+        startActivity(intent);
     }
 }

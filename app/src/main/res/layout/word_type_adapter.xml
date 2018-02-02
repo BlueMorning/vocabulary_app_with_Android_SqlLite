@@ -11,8 +11,10 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:text="TextView"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

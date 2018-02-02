@@ -22,4 +22,5 @@
     <string name="total_right_answers">Total right answers</string>
     <string name="total_wrong_answers">Total wrong answers</string>
     <string name="all_tests">All tests</string>
+    <string name="create_a_new_training">Create a new training</string>
 </resources>

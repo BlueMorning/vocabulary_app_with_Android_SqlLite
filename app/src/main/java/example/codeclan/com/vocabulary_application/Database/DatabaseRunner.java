@@ -66,7 +66,7 @@ public class DatabaseRunner {
 
         ArrayList<TrainingEntity> trainingsEntitiesList = new ArrayList<>();
 
-        for(int indexTrainingEntity = 0; indexTrainingEntity < 15; indexTrainingEntity++){
+        for(int indexTrainingEntity = 0; indexTrainingEntity < (wordListEntities.size()-5); indexTrainingEntity++){
 
             TrainingEntity trainingEntity = new TrainingEntity(
                     EnumTrainingStatus.values()[new Random().nextInt(EnumTrainingStatus.values().length-1)+1],

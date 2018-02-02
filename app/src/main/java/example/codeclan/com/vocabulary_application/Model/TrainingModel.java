@@ -9,8 +9,11 @@ import java.util.stream.Collectors;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
+import example.codeclan.com.vocabulary_application.Entity.WordTrainingJoinEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingWordCount;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.R;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
@@ -31,6 +34,30 @@ public class TrainingModel  {
 
     public TrainingEntity getTrainingEntity() {
         return trainingEntity;
+    }
+
+
+    public static void createNewTraining(WordsRoomDatabase db, EnumTrainingWordCount enumTrainingWordCount, EnumWordType enumWordType) {
+
+        int trainingNumber = db.trainingDao().getNewTrainingNumber();
+
+        TrainingEntity trainingEntity = new TrainingEntity(EnumTrainingStatus.ONGOING,
+                trainingNumber, enumTrainingWordCount.getWordCount(), 1, LocalDate.now());
+        trainingEntity.setId(db.trainingDao().insertTraining(trainingEntity));
+
+        int wordAddedCounter = 0;
+        for(int wordIndex = 0; wordIndex < enumTrainingWordCount.getWordCount(); wordIndex++){
+            WordEntity wordEntity = db.trainingDao().selectNewWordForTraining(enumWordType);
+            if(wordEntity != null) {
+                db.wordTrainingJoinDao().insertWordTrainingJoin(new WordTrainingJoinEntity(wordEntity.getId(), trainingEntity.getId()));
+                wordAddedCounter+=1;
+            }
+        }
+
+        if(wordAddedCounter != enumTrainingWordCount.getWordCount()) {
+            trainingEntity.setTotalWords(wordAddedCounter);
+            db.trainingDao().updateTraining(trainingEntity);
+        }
     }
 
     public void setTrainingEntity(TrainingEntity trainingEntity) {
@@ -90,4 +117,6 @@ public class TrainingModel  {
     public String getStepNumberLabel() {
         return String.format("%s / %s", this.getTrainingEntity().getStepNumber(), totalTrainingStep);
     }
+
+
 }

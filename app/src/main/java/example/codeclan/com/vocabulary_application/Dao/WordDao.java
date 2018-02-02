@@ -24,7 +24,8 @@ public interface WordDao {
     @Query("SELECT * FROM words ORDER BY wrd_spelling LIMIT 100")
     List<WordEntity> getAll();
 
-    @Query("SELECT * FROM words WHERE  lower(words.wrd_spelling) LIKE lower('%' || :spelling || '%') ORDER BY wrd_spelling LIMIT 100")
+    @Query("SELECT * FROM words WHERE  lower(words.wrd_spelling) " +
+            "LIKE lower('%' || :spelling || '%') ORDER BY wrd_spelling LIMIT 100")
     List<WordEntity> getAllBySpelling(String spelling);
 
     @Query("SELECT * FROM words WHERE wrd_id = :id")
@@ -52,11 +53,13 @@ public interface WordDao {
     public void deleteAllWords();
 
     @Query(   " SELECT * FROM words "+
-              " INNER JOIN stats ON stats.sta_wrd_id = words.wrd_id " +
-              " WHERE  "+
-              "     (:spelling          = ''  OR lower(words.wrd_spelling) LIKE lower('%' || :spelling || '%'))"+
-              " AND (:enumWordType      = ''  OR words.wrd_type = :enumWordType)"+
-              " AND (:enumMasteryLevel  = ''  OR stats.sta_mastery_level = :enumMasteryLevel)"+
-              " ORDER BY wrd_spelling LIMIT 100")
+            " INNER JOIN stats ON stats.sta_wrd_id = words.wrd_id " +
+            " WHERE  "+
+            "     (:spelling          = ''  OR lower(words.wrd_spelling) LIKE lower('%' || :spelling || '%'))"+
+            " AND (:enumWordType      = ''  OR words.wrd_type = :enumWordType)"+
+            " AND (:enumMasteryLevel  = ''  OR stats.sta_mastery_level = :enumMasteryLevel)"+
+            " ORDER BY wrd_spelling LIMIT 100")
     public List<WordEntity> getAllBySpellingAndTypeAndMastery(String spelling, String enumWordType, String enumMasteryLevel);
+
+
 }
