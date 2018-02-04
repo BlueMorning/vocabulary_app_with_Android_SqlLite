@@ -40,6 +40,7 @@ public class StatsModelTest {
         statsModel.getStatsEntity().setTrainingStep(5);
         statsModel.getStatsEntity().setTotalAnswers(20);
         statsModel.getStatsEntity().setTotalCorrectAnswers(15);
+        statsModel.getStatsEntity().setTotalIncorrectAnswers(5);
         statsModel.getStatsEntity().setLastTrainingTotalAnswers(4);
         statsModel.getStatsEntity().setLastTrainingTotalCorrectAnswers(1);
         statsModel.getStatsEntity().setLastTrainingTotalIncorrectAnswers(3);

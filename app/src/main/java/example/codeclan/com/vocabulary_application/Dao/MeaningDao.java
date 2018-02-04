@@ -12,6 +12,8 @@ import java.util.List;
 import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
+import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 
 @Dao
 public interface MeaningDao {
@@ -39,4 +41,17 @@ public interface MeaningDao {
 
     @Query("DELETE FROM meanings WHERE mig_wrd_id = :id")
     void deleteMeaningByWordId(Long id);
+
+    @Query( "SELECT * FROM meanings " +
+            "INNER JOIN words ON words.wrd_id = meanings.mig_wrd_id "+
+            "INNER JOIN stats ON stats.sta_wrd_id = words.wrd_id " +
+            "WHERE " +
+            "(:enumMasteryLevelMax = 0 OR stats.sta_mastery_level != :enumMasteryLevelMax )" +
+            "and meanings.mig_wrd_id != :meaningAnswerId " +
+            "and words.wrd_type = :enumWordType " +
+            "ORDER BY RANDOM() LIMIT :propositionsCounter")
+    List<MeaningEntity> getAnswerPropositions(Long meaningAnswerId,
+                                              EnumMasteryLevel enumMasteryLevelMax,
+                                              EnumWordType enumWordType,
+                                              int propositionsCounter);
 }

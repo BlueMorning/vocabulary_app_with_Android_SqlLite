@@ -8,6 +8,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
@@ -15,6 +16,7 @@ import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
+import example.codeclan.com.vocabulary_application.Model.WordModel;
 
 @Dao
 public interface WordDao {
@@ -60,6 +62,4 @@ public interface WordDao {
             " AND (:enumMasteryLevel  = ''  OR stats.sta_mastery_level = :enumMasteryLevel)"+
             " ORDER BY wrd_spelling LIMIT 100")
     public List<WordEntity> getAllBySpellingAndTypeAndMastery(String spelling, String enumWordType, String enumMasteryLevel);
-
-
 }

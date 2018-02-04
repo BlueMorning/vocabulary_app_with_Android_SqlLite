@@ -114,7 +114,7 @@ public class CreateWordActivity extends AppCompatActivity {
 
     public void onClickCreateWordAddMeaningButton(View button){
         this.resetMeaningFields();
-        currentMeaningModel = new MeaningModel(new MeaningEntity(null, "", "", "", ""));
+        currentMeaningModel = new MeaningModel(new MeaningEntity(null, "", "", "", ""), this.wordModel);
         addMeaningSaveButton.setTag(currentMeaningModel);
         meaningListFrame.setVisibility(View.INVISIBLE);
         addMeaningFrame.setVisibility(View.VISIBLE);

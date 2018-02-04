@@ -151,7 +151,7 @@ public class WordsListActivity extends AppCompatActivity {
 
         wordModels = new ArrayList<>(wordsEntityList.stream().map(wordEntity -> {
             WordModel wm = new WordModel(wordEntity, database);
-            wm.initialiseStatsModel();
+            wm.initializeStatsModel();
             return wm;
         }
         ).collect(Collectors.toList()));

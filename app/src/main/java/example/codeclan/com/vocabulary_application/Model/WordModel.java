@@ -25,14 +25,18 @@ public class WordModel {
     private WordsRoomDatabase db;
 
     public WordModel(WordEntity wordEntity, WordsRoomDatabase db){
-        this.db         = db;
-        this.wordEntity = wordEntity;
-        this.statsModel = new StatsModel(db.statsDao().getStatsByWordId(this.wordEntity.getId()), this.db);
+        this.db             = db;
+        this.meaningsList   = new ArrayList<>();
+        this.wordEntity     = wordEntity;
+        this.statsModel     = new StatsModel(db.statsDao().getStatsByWordId(this.wordEntity.getId()), this.db);
+
     }
 
     public WordModel(WordsRoomDatabase db){
-        this.meaningsList = new ArrayList<>();
         this.db           = db;
+        this.meaningsList = new ArrayList<>();
+        this.wordEntity   = null;
+        this.statsModel   = null;
     }
 
     public WordEntity getWordEntity(){
@@ -110,7 +114,7 @@ public class WordModel {
     }
 
 
-    public void initialiseStatsModel() {
+    public void initializeStatsModel() {
         if(this.wordEntity.getId() != null) {
             this.statsModel = new StatsModel(this.db.statsDao().getStatsByWordId(this.wordEntity.getId()), this.db);
         }
@@ -120,7 +124,7 @@ public class WordModel {
         if(this.wordEntity.getId() != null) {
             this.meaningsList = new ArrayList<>(this.db.meaningDao().getMeaningsByWordId(this.wordEntity.getId()).stream().map(
                                     meaningEntity -> {
-                                        return new MeaningModel(meaningEntity);
+                                        return new MeaningModel(meaningEntity, this);
                                     }
                                 ).collect(Collectors.toList()));
         }

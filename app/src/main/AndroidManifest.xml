@@ -20,7 +20,8 @@
         <activity android:name=".Activity.TrainingListActivity" />
         <activity android:name=".Activity.CreateWordActivity" />
         <activity android:name=".Activity.ViewWordActivity" />
-        <activity android:name=".Activity.CreateTrainingActivity"></activity>
+        <activity android:name=".Activity.CreateTrainingActivity" />
+        <activity android:name=".Activity.PracticeTrainingActivity" />
     </application>
 
 </manifest>

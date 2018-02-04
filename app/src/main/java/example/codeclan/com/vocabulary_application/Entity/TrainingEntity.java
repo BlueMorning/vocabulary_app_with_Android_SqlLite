@@ -7,12 +7,13 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 
 @Entity(tableName = "trainings")
-public class TrainingEntity {
+public class TrainingEntity implements Serializable {
 
     // Properties
 

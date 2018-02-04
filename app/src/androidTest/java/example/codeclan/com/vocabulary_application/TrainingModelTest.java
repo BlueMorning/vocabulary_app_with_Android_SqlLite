@@ -41,12 +41,12 @@ public class TrainingModelTest {
         Context context = InstrumentationRegistry.getTargetContext();
         wordsDB         = Room.inMemoryDatabaseBuilder(context, WordsRoomDatabase.class).build();
         DatabaseRunner.fuelDatabase(wordsDB);
-        trainingEntity  = new TrainingEntity(EnumTrainingStatus.ONGOING, 1, 5, 1, LocalDate.now());
+        trainingEntity  = new TrainingEntity(EnumTrainingStatus.ONGOING, 1, 3, 1, LocalDate.now());
         trainingEntity.setId(wordsDB.trainingDao().insertTraining(trainingEntity));
 
-        ArrayList<WordEntity> wordsList = new ArrayList<>(wordsDB.wordDao().getAll());
+        ArrayList<WordEntity> wordsList = new ArrayList<>(wordsDB.wordDao().getAll().subList(0, trainingEntity.getTotalWords()));
 
-        for(int wordIndex = 0; wordIndex < 5; wordIndex++){
+        for(int wordIndex = 0; wordIndex < wordsList.size(); wordIndex++){
             wordsDB.wordTrainingJoinDao().insertWordTrainingJoin(
                     new WordTrainingJoinEntity(wordsList.get(wordIndex).getId(), trainingEntity.getId()));
         }
@@ -69,8 +69,8 @@ public class TrainingModelTest {
 
     @Test
     public void hasTotalWords(){
-        assertEquals(5, trainingModel.getTotalWords());
-        assertEquals(5, trainingModel.getwordsModelList().size());
+        assertEquals(trainingEntity.getTotalWords(), trainingModel.getTotalWords());
+        assertEquals(trainingEntity.getTotalWords(), trainingModel.getwordsModelList().size());
     }
 
     @Test
