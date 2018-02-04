@@ -29,14 +29,20 @@ public class TrainingModel  {
     private ArrayList<QuestionModel> questionsModelList;
 
     public TrainingModel(TrainingEntity trainingEntity, WordsRoomDatabase db){
-        this.trainingEntity = trainingEntity;
-        this.db             = db;
+        this.trainingEntity         = trainingEntity;
+        this.db                     = db;
+        this.wordsModelList         = new ArrayList<>();
+        this.questionsModelList     = new ArrayList<>();
+
     }
 
     public TrainingEntity getTrainingEntity() {
         return trainingEntity;
     }
 
+    public ArrayList<QuestionModel> getQuestionsModelList(){
+        return this.questionsModelList;
+    }
 
     public static void createNewTraining(WordsRoomDatabase db, EnumTrainingWordCount enumTrainingWordCount, EnumWordType enumWordType) {
 
@@ -123,6 +129,9 @@ public class TrainingModel  {
 
     public ArrayList<QuestionModel> initializeQuestions(ArrayList<EnumQuestionType> enumQuestionTypes, Boolean shuffleQuestions){
 
+        this.initializeWordsList();
+        this.questionsModelList.clear();
+
         for(EnumQuestionType enumQuestionType : enumQuestionTypes){
 
             for(WordModel wordModel : wordsModelList){
@@ -146,13 +155,15 @@ public class TrainingModel  {
         }
 
         if(shuffleQuestions){
-            Collections.shuffle(this.questionsModelList);
+            shuffleQuestions();
         }
 
         return this.questionsModelList;
     }
 
-
+    public void shuffleQuestions(){
+        Collections.shuffle(this.questionsModelList);
+    }
 
 
 }

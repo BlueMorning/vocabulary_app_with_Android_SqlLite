@@ -47,10 +47,10 @@ public interface MeaningDao {
             "INNER JOIN stats ON stats.sta_wrd_id = words.wrd_id " +
             "WHERE " +
             "(:enumMasteryLevelMax = 0 OR stats.sta_mastery_level != :enumMasteryLevelMax )" +
-            "and meanings.mig_wrd_id != :meaningAnswerId " +
+            "and meanings.mig_wrd_id != :wordAnswerId " +
             "and words.wrd_type = :enumWordType " +
             "ORDER BY RANDOM() LIMIT :propositionsCounter")
-    List<MeaningEntity> getAnswerPropositions(Long meaningAnswerId,
+    List<MeaningEntity> getAnswerPropositions(Long wordAnswerId,
                                               EnumMasteryLevel enumMasteryLevelMax,
                                               EnumWordType enumWordType,
                                               int propositionsCounter);

@@ -35,7 +35,6 @@ public class QuestionModel {
     }
 
     public EnumQuestionType getEnumQuestionType() {
-
         return enumQuestionType;
     }
 
@@ -43,9 +42,37 @@ public class QuestionModel {
         return meaningAnswer;
     }
 
+    public String getQuestionLabel(){
+
+        String questionLabel;
+
+        switch(enumQuestionType){
+            case DEFINITION_WORD:
+                questionLabel = this.meaningAnswer.getMeaningEntity().getMeaning();
+                break;
+
+            case WORD_EXAMPLE:
+                questionLabel = this.meaningAnswer.getWordModel().getWordEntity().getSpelling();
+                break;
+
+            case EXAMPLE_WORD:
+                questionLabel = this.meaningAnswer.getMeaningEntity().getExample();
+                break;
+
+            case WORD_DEFINITION:
+                questionLabel = this.meaningAnswer.getWordModel().getWordEntity().getSpelling();
+                break;
+
+            default:
+                questionLabel = this.meaningAnswer.getWordModel().getWordEntity().getSpelling();
+                break;
+        }
+
+        return questionLabel;
+    }
+
 
     public ArrayList<PropositionModel> getPropositions() {
-
         return propositions;
     }
 
@@ -61,7 +88,8 @@ public class QuestionModel {
                 this.propositionCount-1).stream().map(
                         meaningEntity -> {
                             return new PropositionModel(
-                                    new MeaningModel(meaningEntity, this.wordModelToPractice), enumQuestionType);
+                                    new MeaningModel(meaningEntity,
+                                            new WordModel(db.wordDao().getWordByWordId(meaningEntity.getWordId()), db)), enumQuestionType);
                         }
         ).collect(Collectors.toList()));
 
