@@ -40,7 +40,6 @@ public class QuestionModel {
     }
 
     public MeaningModel getMeaningAnswer() {
-
         return meaningAnswer;
     }
 
@@ -48,10 +47,6 @@ public class QuestionModel {
     public ArrayList<PropositionModel> getPropositions() {
 
         return propositions;
-    }
-
-    public void setPropositions(ArrayList<PropositionModel> propositions) {
-        this.propositions = propositions;
     }
 
     public Boolean checkAnswer(MeaningModel answer){

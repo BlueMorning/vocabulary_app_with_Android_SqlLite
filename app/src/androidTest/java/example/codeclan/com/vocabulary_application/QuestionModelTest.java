@@ -48,6 +48,11 @@ public class QuestionModelTest {
     }
 
     @Test
+    public void hasMeaningAnswer(){
+        assertEquals(wordModel.getMeaningsList().get(0), questionModel.getMeaningAnswer());
+    }
+
+    @Test
     public void hasPropositions(){
         questionModel.initializePropositions();
         assertEquals(4,  questionModel.getPropositions().size());
