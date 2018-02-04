@@ -10,7 +10,6 @@ import org.junit.Test;
 import example.codeclan.com.vocabulary_application.Database.DatabaseRunner;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumQuestionType;
-import example.codeclan.com.vocabulary_application.Enumerations.EnumWordType;
 import example.codeclan.com.vocabulary_application.Model.QuestionModel;
 import example.codeclan.com.vocabulary_application.Model.WordModel;
 
@@ -33,7 +32,7 @@ public class QuestionModelTest {
         db              = Room.inMemoryDatabaseBuilder(context, WordsRoomDatabase.class).build();
         DatabaseRunner.fuelDatabase(db);
 
-        wordModel       = new WordModel(db.wordDao().getAll().get(0), db);
+        wordModel       = new WordModel(db.wordDao().getAllBySpelling("to deal with").get(0), db);
         wordModel.initializeMeanings();
         questionModel   = new QuestionModel(EnumQuestionType.WORD_DEFINITION,
                 wordModel,
@@ -48,7 +47,21 @@ public class QuestionModelTest {
         assertEquals(EnumQuestionType.WORD_DEFINITION, questionModel.getEnumQuestionType());
     }
 
+    @Test
+    public void hasPropositions(){
+        questionModel.initializePropositions();
+        assertEquals(4,  questionModel.getPropositions().size());
+    }
 
+    @Test
+    public void canCheckAnswer__true(){
+        assertEquals(true, questionModel.checkAnswer(wordModel.getMeaningsList().get(0)));
+    }
+
+    @Test
+    public void canCheckAnswer__false(){
+        assertEquals(false, questionModel.checkAnswer(wordModel.getMeaningsList().get(1)));
+    }
 
 
 }

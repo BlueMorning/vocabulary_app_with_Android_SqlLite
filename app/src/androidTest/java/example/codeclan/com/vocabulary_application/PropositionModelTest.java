@@ -55,4 +55,6 @@ public class PropositionModelTest {
         assertEquals(meaningModel, this.propositionModel.getMeaningModel());
     }
 
+
+
 }

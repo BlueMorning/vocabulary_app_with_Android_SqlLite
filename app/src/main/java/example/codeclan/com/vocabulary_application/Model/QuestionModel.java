@@ -44,10 +44,6 @@ public class QuestionModel {
         return meaningAnswer;
     }
 
-    public void setMeaningAnswer(MeaningModel meaningAnswer) {
-
-        this.meaningAnswer = meaningAnswer;
-    }
 
     public ArrayList<PropositionModel> getPropositions() {
 
@@ -63,7 +59,7 @@ public class QuestionModel {
         return this.meaningAnswer == answer;
     }
 
-    public void initializeAnswers(){
+    public void initializePropositions(){
         propositions = new ArrayList<>(db.meaningDao().getAnswerPropositions(wordModelToPractice.getWordEntity().getId(),
                 EnumMasteryLevel.HIGH,
                 wordModelToPractice.getWordEntity().getType(),

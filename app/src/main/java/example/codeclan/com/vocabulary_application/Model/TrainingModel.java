@@ -1,18 +1,14 @@
 package example.codeclan.com.vocabulary_application.Model;
 
-import android.graphics.drawable.Drawable;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
-import example.codeclan.com.vocabulary_application.Entity.MeaningEntity;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordTrainingJoinEntity;
-import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumQuestionType;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingStatus;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumTrainingWordCount;
@@ -141,7 +137,7 @@ public class TrainingModel  {
                             totalPropositionCount,
                             db);
 
-                    questionModel.initializeAnswers();
+                    questionModel.initializePropositions();
                     questionModel.shuffleAnswers();
 
                     this.questionsModelList.add(questionModel);

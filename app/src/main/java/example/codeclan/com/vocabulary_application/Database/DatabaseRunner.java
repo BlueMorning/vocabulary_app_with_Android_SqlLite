@@ -36,9 +36,11 @@ public class DatabaseRunner {
         WordEntity w1 = new WordEntity(EnumWordType.PHRASAL_VERB, "to deal with", "");
         WordEntity w2 = new WordEntity(EnumWordType.PHRASAL_VERB, "to win out", "");
         WordEntity w3 = new WordEntity(EnumWordType.PHRASAL_VERB, "to carry on", "");
+        WordEntity w4 = new WordEntity(EnumWordType.PHRASAL_VERB, "to answer back", "");
         wordListEntities.add(w1);
         wordListEntities.add(w2);
         wordListEntities.add(w3);
+        wordListEntities.add(w4);
 
         WordModel wm1 = new WordModel(w1, db);
         MeaningEntity m1 = new MeaningEntity(new Long(0),
@@ -47,6 +49,16 @@ public class DatabaseRunner {
                 "",
                 "");
         wm1.addMeaning(new MeaningModel(m1, wm1));
+
+
+        MeaningEntity m1_2 = new MeaningEntity(new Long(0),
+                "to accept and control a difficult emotional situation so that you can start to live a normal life again despite it",
+                "She’s dealing with her father’s death very well.",
+                "",
+                "");
+        wm1.addMeaning(new MeaningModel(m1_2, wm1));
+
+
         wm1.saveWord();
 
         WordModel wm2 = new WordModel(w2, db);
@@ -56,6 +68,10 @@ public class DatabaseRunner {
                 "",
                 "");
         wm2.addMeaning(new MeaningModel(m2, wm2));
+
+
+
+
         wm2.saveWord();
 
         WordModel wm3 = new WordModel(w3, db);
@@ -66,6 +82,15 @@ public class DatabaseRunner {
                 "");
         wm3.addMeaning(new MeaningModel(m3, wm3));
         wm3.saveWord();
+
+        WordModel wm4 = new WordModel(w4, db);
+        MeaningEntity m4 = new MeaningEntity(new Long(0),
+                "to reply rudely to someone who has more authority than you",
+                "Don’t you dare answer me back !",
+                "",
+                "");
+        wm4.addMeaning(new MeaningModel(m4, wm4));
+        wm4.saveWord();
 
 
         int[] wordCounts = {1,2,3};
