@@ -50,6 +50,9 @@ public class PropositionModelTest {
     }
 
 
-
+    @Test
+    public void hasMeaningModel(){
+        assertEquals(meaningModel, this.propositionModel.getMeaningModel());
+    }
 
 }

@@ -18,6 +18,10 @@ public class PropositionModel {
         this.enumQuestionType   = enumQuestionType;
     }
 
+    public MeaningModel getMeaningModel(){
+        return this.meaningModel;
+    }
+
     public String getProposition(){
 
         switch(enumQuestionType){
