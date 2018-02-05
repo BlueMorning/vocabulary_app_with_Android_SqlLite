@@ -15,4 +15,8 @@ public class StringUtils {
         return ((Integer)integer).toString();
     }
 
+    public static Boolean isEmptyOrNull(String stringToTest){
+        return stringToTest == null || stringToTest.equals("");
+    }
+
 }

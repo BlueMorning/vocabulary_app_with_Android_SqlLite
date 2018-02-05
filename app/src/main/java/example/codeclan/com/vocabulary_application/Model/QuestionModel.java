@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumMasteryLevel;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumQuestionType;
+import example.codeclan.com.vocabulary_application.R;
+import example.codeclan.com.vocabulary_application.Utils.StringUtils;
 
 /**
  * Created by horizon on 02/02/2018.
@@ -78,7 +80,7 @@ public class QuestionModel {
 
     public Boolean checkAnswer(MeaningModel answer){
 
-        return this.meaningAnswer == answer;
+        return this.meaningAnswer.getMeaningEntity().getId() == answer.getMeaningEntity().getId();
     }
 
     public void initializePropositions(){
@@ -99,9 +101,60 @@ public class QuestionModel {
     }
 
     public void shuffleAnswers(){
+
         Collections.shuffle(propositions);
     }
 
+    public String getMessageCorrectAnswer(MeaningModel meaningModel){
+        String answerMessage = "Correct answer !";
 
+        if(! StringUtils.isEmptyOrNull(meaningModel.getMeaningEntity().getSynonyms())){
+            answerMessage += " Synonyms = " + meaningModel.getMeaningEntity().getSynonyms();
+        }
+
+        if(! StringUtils.isEmptyOrNull(meaningModel.getMeaningEntity().getAntonyms())){
+            answerMessage += " Antonyms = " + meaningModel.getMeaningEntity().getSynonyms();
+        }
+        return answerMessage;
+    }
+
+    public String getMessageIncorrectAnswer(MeaningModel userAnswer){
+
+        String incorrectAnswerMessage = "Incorrect answer. ";
+
+        switch(enumQuestionType){
+            case DEFINITION_WORD:
+                incorrectAnswerMessage += String.format(" %s = %s ",
+                        userAnswer.getWordModel().getWordEntity().getSpelling(),
+                        userAnswer.getMeaningEntity().getMeaning());
+                break;
+
+            case WORD_EXAMPLE:
+                incorrectAnswerMessage += String.format(" %s = %s ",
+                        userAnswer.getWordModel().getWordEntity().getSpelling(),
+                        userAnswer.getMeaningEntity().getExample());
+                break;
+
+            case EXAMPLE_WORD:
+                incorrectAnswerMessage += String.format(" %s = %s ",
+                        userAnswer.getWordModel().getWordEntity().getSpelling(),
+                        userAnswer.getMeaningEntity().getMeaning());
+                break;
+
+            case WORD_DEFINITION:
+                incorrectAnswerMessage += String.format(" %s = %s ",
+                        userAnswer.getWordModel().getWordEntity().getSpelling(),
+                        userAnswer.getMeaningEntity().getMeaning());
+                break;
+
+            default:
+                incorrectAnswerMessage += String.format(" %s = %s ",
+                        userAnswer.getMeaningEntity().getMeaning(),
+                        userAnswer.getWordModel().getWordEntity().getSpelling());
+                break;
+        }
+
+        return incorrectAnswerMessage;
+    }
 
 }

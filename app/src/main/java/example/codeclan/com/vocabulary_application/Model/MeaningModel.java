@@ -26,6 +26,9 @@ public class MeaningModel {
     }
 
     public WordModel getWordModel(){
+
         return this.wordModel;
     }
+
+
 }

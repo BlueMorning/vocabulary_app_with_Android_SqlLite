@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.UserDictionary;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,8 @@ import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Enumerations.EnumQuestionType;
+import example.codeclan.com.vocabulary_application.Model.MeaningModel;
+import example.codeclan.com.vocabulary_application.Model.PropositionModel;
 import example.codeclan.com.vocabulary_application.Model.QuestionModel;
 import example.codeclan.com.vocabulary_application.Model.TrainingModel;
 import example.codeclan.com.vocabulary_application.R;
@@ -82,8 +88,42 @@ public class PracticeTrainingActivity extends AppCompatActivity {
 
     public void checkAnswer(View button){
 
-        displayNextQuestion();
+        PropositionModel propositionModel = (PropositionModel)button.getTag();
+        if(this.getCurrentQuestionModel().checkAnswer(propositionModel.getMeaningModel())){
+            displayToastMessageAnswer(true, getCurrentQuestionModel().getMessageCorrectAnswer(propositionModel.getMeaningModel()));
+            displayNextQuestion();
+        }
+        else{
+            displayToastMessageAnswer(false, getCurrentQuestionModel().getMessageIncorrectAnswer(propositionModel.getMeaningModel()));
+        }
     }
+
+
+    public void displayToastMessageAnswer(Boolean isAnswerOk, String message){
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        View layout;
+
+        if(isAnswerOk) {
+            layout = inflater.inflate(R.layout.toast_training_correct_answer_message,
+                    (ViewGroup) findViewById(R.id.custom_toast_container));
+            TextView text = (TextView) layout.findViewById(R.id.toast_correct_answer_message);
+            text.setText(message);
+        }
+        else{
+            layout = inflater.inflate(R.layout.toast_training_incorrect_answer_message,
+                    (ViewGroup) findViewById(R.id.custom_toast_container));
+            TextView text = (TextView) layout.findViewById(R.id.toast_incorrect_answer_message);
+            text.setText(message);
+        }
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
 
     public void displayNextQuestion(){
         if(indexCurrentQuestion+1 < trainingModel.getQuestionsModelList().size()){
