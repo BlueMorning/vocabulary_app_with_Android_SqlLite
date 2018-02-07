@@ -25,7 +25,7 @@ public interface TrainingDao {
 
     @Query(   " SELECT * FROM words "
             + " INNER JOIN words_trainings_joins ON words_trainings_joins.wrd_tra_wrd_id = words.wrd_id"
-            + " WHERE words_trainings_joins.wrd_tra_tra_id = :id ")
+            + " WHERE words_trainings_joins.wrd_tra_tra_id = :id ORDER BY words.wrd_spelling ")
     List<WordEntity> getWordsByTrainingId(Long id);
 
     @Insert

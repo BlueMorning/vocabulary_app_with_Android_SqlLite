@@ -22,6 +22,7 @@
         <activity android:name=".Activity.ViewWordActivity" />
         <activity android:name=".Activity.CreateTrainingActivity" />
         <activity android:name=".Activity.PracticeTrainingActivity" />
+        <activity android:name=".Activity.ViewTrainingActivity"></activity>
     </application>
 
 </manifest>

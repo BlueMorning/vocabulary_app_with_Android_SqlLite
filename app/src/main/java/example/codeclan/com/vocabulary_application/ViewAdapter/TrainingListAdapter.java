@@ -45,7 +45,7 @@ public class TrainingListAdapter extends ArrayAdapter<TrainingModel> {
         ProgressBar trainingListTrainingStepProgressBar = listItemView.findViewById(R.id.trainingListTrainingStepProgressBar);
 
         trainingsListNumber.setText(currentTrainingModel.getNumberLabel());
-        trainingsListTotalWords.setText(StringUtils.intToString(currentTrainingModel.getTotalWords()));
+        trainingsListTotalWords.setText(String.format("%s words", currentTrainingModel.getTotalWords()));
         trainingsListBestNextDate.setText(currentTrainingModel.getBestNextDateLabel());
         trainingsListImageTiming.setImageResource(currentTrainingModel.getImageTiming());
         trainingsListStep.setText(currentTrainingModel.getStepNumberLabel());

@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/trainingsListStep"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        android:paddingRight="10dp"
+        android:paddingRight="5dp"
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toEndOf="@+id/trainingsListNextBestDate"
@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/trainingsListNumber"
-        android:layout_width="50dp"
-        android:layout_height="28dp"
+        android:layout_width="40dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textAlignment="viewStart"
@@ -32,8 +32,8 @@
 
     <TextView
         android:id="@+id/trainingsListtotalWords"
-        android:layout_width="40dp"
-        android:layout_height="28dp"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textAlignment="center"
@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/trainingsListNextBestDate"
         android:layout_width="90dp"
-        android:layout_height="28dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/trainingsListImageTiming"
@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/trainingsListImageTiming"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/trainingsListtotalWords"
@@ -62,7 +62,7 @@
     <Button
         android:id="@+id/trainingsListPractiseButton"
         android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:onClick="onClickPracticeTraining"
         android:text="GO"
@@ -72,10 +72,9 @@
     <ProgressBar
         android:id="@+id/trainingListTrainingStepProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="60dp"
+        android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toEndOf="@+id/trainingsListNextBestDate"
+        app:layout_constraintEnd_toEndOf="@+id/trainingsListStep"
+        app:layout_constraintStart_toStartOf="@+id/trainingsListStep"
         app:layout_constraintTop_toBottomOf="@+id/trainingsListStep" />
 </android.support.constraint.ConstraintLayout>

@@ -22,6 +22,8 @@ public class QuestionModel {
     private ArrayList<PropositionModel> propositions;
     private WordsRoomDatabase db;
     private int propositionCount;
+    private int correctAnswers;
+    private int incorrectAnswers;
 
 
     public QuestionModel(EnumQuestionType enumQuestionType,
@@ -42,6 +44,26 @@ public class QuestionModel {
 
     public MeaningModel getMeaningAnswer() {
         return meaningAnswer;
+    }
+
+    public WordModel getWordModelToPractice(){
+        return this.wordModelToPractice;
+    }
+
+    public void getCorrectAnswers(int correctAnswers){
+        this.correctAnswers = correctAnswers;
+    }
+
+    public void getIncorrectAnswers(int incorrectAnswers){
+        this.incorrectAnswers = incorrectAnswers;
+    }
+
+    public int getCorrectAnswers(){
+        return this.correctAnswers;
+    }
+
+    public int getIncorrectAnswers(){
+        return this.incorrectAnswers;
     }
 
     public String getQuestionLabel(){
@@ -79,8 +101,21 @@ public class QuestionModel {
     }
 
     public Boolean checkAnswer(MeaningModel answer){
+        Boolean isAnswerCorrect = this.meaningAnswer.getMeaningEntity().getId() == answer.getMeaningEntity().getId();
 
-        return this.meaningAnswer.getMeaningEntity().getId() == answer.getMeaningEntity().getId();
+        if(isAnswerCorrect){
+            this.correctAnswers +=1;
+        }
+        else{
+            this.incorrectAnswers +=1;
+        }
+
+        return isAnswerCorrect;
+    }
+
+    public void resetScores(){
+        this.correctAnswers   = 0;
+        this.incorrectAnswers = 0;
     }
 
     public void initializePropositions(){

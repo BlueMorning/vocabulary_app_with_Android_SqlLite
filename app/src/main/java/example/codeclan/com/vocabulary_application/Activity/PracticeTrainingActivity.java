@@ -130,6 +130,8 @@ public class PracticeTrainingActivity extends AppCompatActivity {
             indexCurrentQuestion +=1;
         }
         else{
+            trainingModel.updateStats();
+            trainingModel.resetAllQuestionScores();
             trainingModel.shuffleQuestions();
             indexCurrentQuestion = 0;
         }

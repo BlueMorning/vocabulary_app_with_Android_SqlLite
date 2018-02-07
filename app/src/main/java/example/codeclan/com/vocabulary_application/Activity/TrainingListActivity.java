@@ -183,7 +183,7 @@ public class TrainingListActivity extends AppCompatActivity {
 
     public void onClickPracticeTraining(View button){
 
-        Intent intent = new Intent(this, PracticeTrainingActivity.class);
+        Intent intent = new Intent(this, ViewTrainingActivity.class);
         TrainingEntity trainingEntity = ((TrainingModel)button.getTag()).getTrainingEntity();
         intent.putExtra("trainingEntity", trainingEntity);
         startActivity(intent);

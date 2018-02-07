@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 import example.codeclan.com.vocabulary_application.Database.WordsRoomDatabase;
+import example.codeclan.com.vocabulary_application.Entity.StatsEntity;
 import example.codeclan.com.vocabulary_application.Entity.TrainingEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordEntity;
 import example.codeclan.com.vocabulary_application.Entity.WordTrainingJoinEntity;
@@ -161,9 +162,48 @@ public class TrainingModel  {
         return this.questionsModelList;
     }
 
+    public void resetAllQuestionScores(){
+        for(QuestionModel question : this.questionsModelList){
+            question.resetScores();
+        }
+    }
+
     public void shuffleQuestions(){
         Collections.shuffle(this.questionsModelList);
     }
 
+    public void updateStats(){
 
+        StatsEntity statsEntity;
+
+        for(WordModel wordModel: this.wordsModelList){
+            statsEntity = db.statsDao().getStatsByWordId(wordModel.getWordEntity().getId());
+            statsEntity.setLastTrainingTotalAnswers(0);
+            statsEntity.setLastTrainingTotalCorrectAnswers(0);
+            statsEntity.setLastTrainingTotalIncorrectAnswers(0);
+            db.statsDao().updateStats(statsEntity);
+        }
+
+        for(QuestionModel questionModel: this.questionsModelList){
+
+            statsEntity = db.statsDao().getStatsByWordId(questionModel.getWordModelToPractice().getWordEntity().getId());
+
+            statsEntity.setTotalAnswers(statsEntity.getTotalAnswers() + questionModel.getCorrectAnswers() + questionModel.getIncorrectAnswers());
+            statsEntity.setTotalCorrectAnswers(statsEntity.getTotalIncorrectAnswers()+ questionModel.getCorrectAnswers());
+            statsEntity.setTotalIncorrectAnswers(statsEntity.getTotalIncorrectAnswers()+ questionModel.getIncorrectAnswers());
+
+            statsEntity.setLastTrainingTotalAnswers(statsEntity.getLastTrainingTotalAnswers() + questionModel.getCorrectAnswers() + questionModel.getIncorrectAnswers());
+            statsEntity.setLastTrainingTotalCorrectAnswers(statsEntity.getLastTrainingTotalCorrectAnswers() + questionModel.getCorrectAnswers());
+            statsEntity.setLastTrainingTotalIncorrectAnswers(statsEntity.getLastTrainingTotalIncorrectAnswers() + questionModel.getIncorrectAnswers());
+
+            statsEntity.setTrainingStep(statsEntity.getTrainingStep()+1);
+
+            db.statsDao().updateStats(statsEntity);
+        }
+    }
+
+    public void delete() {
+        db.wordTrainingJoinDao().deleteWordTrainingJoinByTrainingId(this.trainingEntity.getId());
+        db.trainingDao().deleteTrainingById(this.trainingEntity.getId());
+    }
 }
